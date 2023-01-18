@@ -9,6 +9,106 @@
         <script type="text/javascript" src="./headphones.js"></script>
     </head>
     <body>
-        <p>Hello world!</p>
+        <header>
+            <nav class="width">
+                <div class="left">
+                    <p id="logo">MyHeadphones</p>
+                    <ul class="nav-links">
+                        <a href="./headphones-list.html"><li>Headphones</li></a>
+                        <a href="./about.html"><li>About Us</li></a>
+                    </ul>
+                </div>
+                <div class="right" id="signup">
+                    <button>Sign In / Sign Up</button>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <p id="database" class="width">Headphones Database</p>
+            <div id="filter-options">
+                <ul class="width">
+                   <div class="left">
+                    <li id="all-option">All</li>
+                    <li>
+                        <select name="brand" required>
+                            <option value="" disabled selected>Brand</option>
+                            <option>Sennheiser</option>
+                            <option>Beyerdynamic</option>
+                        </select>
+                    </li>
+                    <li>
+                        <select name="type" required>
+                            <option value="" disabled selected>Type</option>
+                            <option>On-Ear</option>
+                            <option>Over-Ear</option>
+                        </select>
+                    </li>
+                    <li>
+                        <select name="driver" required>
+                            <option value="" disabled selected>Driver</option>
+                            <option>Dynamic</option>
+                            <option>Planar</option>
+                        </select>
+                    </li>
+                   </div>
+
+                   <select id="sort">
+                    <option>Price (DESC)</option>
+                    <option>Price (ASC)</option>
+                    <option>A-Z (DESC)</option>
+                    <option>A-Z (ASC)</option>
+                    <option>Rating (DESC)</option>
+                    <option>Rating (ASC)</option>
+                   </select>
+                </ul>
+            </div>
+
+            <section id="headphones-list">
+                <ul class="width">
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+
+                    <li>
+                        <img src="" width="150px" height="150px">
+                        <p>Headphones and Earphones</p>
+                    </li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>placeholder text</p>
+        </footer>
     </body>
 </html>

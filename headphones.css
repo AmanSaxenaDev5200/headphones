@@ -73,7 +73,7 @@ nav .left {
     cursor: pointer;
 }
 
-/* content */
+/* landing page content */
 main {
     background-color: black;
     color: white;
@@ -120,6 +120,75 @@ main {
     align-items: center;
 
     margin-bottom: 2em;
+}
+
+/* database content */
+#database {
+    font-size: 48px;
+    text-align: center;
+    padding: 3em 1em;
+}
+
+#filter-options {
+    background-color: white;
+}
+
+#filter-options ul {
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em 1em 2em;
+    border-bottom: 2px solid #eeeeee;
+}
+
+#filter-options .left {
+    display: flex;
+}
+
+#filter-options .left {
+    justify-content: flex-start;
+}
+
+#filter-options .left li {
+    padding: 1em 2em;
+}
+
+#filter-options .left select:required:invalid {
+    color: #444444;
+}
+
+#filter-options .left option[value=""][disabled] {
+    display: none;
+}
+
+#filter-options .left select {
+    border: 0;
+}
+
+#all-option {
+    cursor: pointer;
+}
+
+#sort {
+    padding: 0 2em 0 0.5em;
+}
+
+#headphones-list {
+    background-color: white;
+}
+
+#headphones-list ul {
+    color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5em;
+    text-align: center;
+    padding: 5em;
+}
+
+#headphones-list img {
+    margin-bottom: 1.5em;
 }
 
 /* footer */
