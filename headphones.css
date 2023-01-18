@@ -138,7 +138,7 @@ main {
     color: black;
     display: flex;
     justify-content: space-between;
-    padding: 1em 2em 1em 2em;
+    padding: 1em 2em;
     border-bottom: 2px solid #eeeeee;
 }
 
@@ -190,6 +190,65 @@ main {
 
 #headphones-list img {
     margin-bottom: 1.5em;
+}
+
+/* headphone page */
+.hp-heading {
+    text-align: center;
+    padding: 4em 1em 5em 1em;
+}
+
+.hp-main {
+    margin-bottom: 3em;
+}
+
+.hp-heading h1 {
+    font-size: 36px;
+}
+
+.tab-options {
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+    padding: 1em 2em;
+    border-bottom: 2px solid #eeeeee;
+}
+
+.tab-options li {
+    padding: 1em 2em;
+}
+
+.tab-options li:hover {
+    color: white;
+    background-color: orange;
+    cursor: pointer;
+}
+
+.tab-container {
+    background-color: white;
+}
+
+.specs-container {
+    background-color: white;
+}
+
+.specs-container ul {
+    color: black;
+    margin: 0 auto;
+    padding: 2em 0 2em 4em;
+}
+
+.specs-container ul li {
+    font-size: 18px;
+    margin-bottom: 2em;
+}
+
+.specs-container ul label {
+    font-weight: bold;
+}
+
+.specs-container ul p {
+    margin-top: 0.5em;
 }
 
 /* footer */
