@@ -60,7 +60,7 @@ nav .left {
     color: orange;
 }
 
-#signup button {
+#signup {
     background-color: transparent;
     color: white;
     font-weight: bold;
@@ -68,7 +68,7 @@ nav .left {
     padding: 1em;
 }
 
-#signup button:hover {
+#signup:hover {
     background-color: orange;
     color: white;
     cursor: pointer;
