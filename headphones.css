@@ -201,8 +201,13 @@ main {
     margin-bottom: 1em;
 }
 
-.hero-text button {
+#hero-signup{
+    background-color: orange;
+    color: white;
     max-width: 150px;
+    border: 0;
+    padding: 1em;
+    cursor: pointer;
 }
 
 .info-container {

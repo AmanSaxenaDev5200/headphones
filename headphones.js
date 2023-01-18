@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //login modal
 const signup = document.getElementById('signup');
+const heroSignup = document.getElementById('hero-signup');
 const closebtn = document.getElementById('close-modal');
 signup.addEventListener('click', openModal, false);
+heroSignup.addEventListener('click', openModal, false);
 closebtn.addEventListener('click', closeModal, false);
 
 
