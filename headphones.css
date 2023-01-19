@@ -109,6 +109,12 @@ nav .left {
     cursor: pointer;
 }
 
+.create-user {
+    margin-top: 1em;
+    height: 100%;
+    transition: height 0.2s linear;
+}
+
 .login-container .left, .login-container .right {
     display: flex;
     flex-direction: column;
@@ -172,7 +178,8 @@ nav .left {
 }
 
 .hidden {
-    display: none;
+    visibility: hidden;
+    height: 0px;
 }
 
 

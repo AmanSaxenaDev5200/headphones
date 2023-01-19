@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MyHeadphones</title>
         <link rel="stylesheet" href="./headphones.css">
-    <body>
+        <script src="https://kit.fontawesome.com/70f047892b.js" crossorigin="anonymous"></script>
+    </head>
+        <body>
         <header>
             <nav class="width">
                 <div class="left">
@@ -19,7 +21,7 @@
                 <div class="right">
                     <button class="signup-btn" id="signup">Sign In / Sign Up</button>
                 </div>
-                <div class="modal hidden">
+                <form id="login-modal" class="modal hidden">
                     <div class="close">
                         <button id="close-modal">X</button>
                     </div>
@@ -27,20 +29,20 @@
                         <div class="left">
                             <h2>New User?</h2>
                             <p>Join now to catalog your headphones, share with your friends, and be part of a vibrant community!</p>
-                            <div class="hidden">
-                                <label>Username</label><p><input type="text" size="20"></p>
-                                <label>Password</label><p><input type="text" size="20"></p>
+                            <div class="create-user hidden">
+                                <label>Username</label><p><input name="create-username" type="text" size="20" required></p>
+                                <label>Password</label><p><input name="create-password" type="password" size="20" required></p>
                             </div>
-                            <button>Sign Up</button>
+                            <button id="create-btn" type="button">Sign Up</button>
                         </div>
                         <div class="right">
                             <h2>Returning User?</h2>
-                            <label>Username</label><p><input type="text" size="20"></p>
-                            <label>Password</label><p><input type="text" size="20"></p>
-                            <button>Sign In</button>
+                            <label>Username</label><p><input type="text" name="username" size="20"></p>
+                            <label>Password</label><p><input type="password" name="password" size="20"></p>
+                            <button id="login-btn" type="button">Sign In</button>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div class="overlay hidden">
                 </div>
             </nav>
@@ -77,6 +79,6 @@
             <p>placeholder text</p>
         </footer>
     </body>
-
+    
     <script type="text/javascript" src="./headphones.js"></script>
 </html>
