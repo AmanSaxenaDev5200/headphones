@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MyHeadphones</title>
         <link rel="stylesheet" href="./headphones.css">
-        <script type="text/javascript" src="./headphones.js"></script>
     </head>
     <body>
         <header>
@@ -19,8 +18,32 @@
                     </ul>
                 </div>
                 <div class="right">
-                    <button id="signup">Sign In / Sign Up</button>
+                    <button class="signup-btn" id="signup">Sign In / Sign Up</button>
                 </div>
+
+                <div class="modal hidden">
+                    <div class="close">
+                        <button id="close-modal">X</button>
+                    </div>
+                    <div class="login-container">
+                        <div class="left">
+                            <h2>New User?</h2>
+                            <p>Join now to catalog your headphones, share with your friends, and be part of a vibrant community!</p>
+                            <div class="hidden">
+                                <label>Username</label><p><input type="text" size="20"></p>
+                                <label>Password</label><p><input type="text" size="20"></p>
+                            </div>
+                            <button>Sign Up</button>
+                        </div>
+                        <div class="right">
+                            <h2>Returning User?</h2>
+                            <label>Username</label><p><input type="text" size="20"></p>
+                            <label>Password</label><p><input type="text" size="20"></p>
+                            <button>Sign In</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="overlay hidden">
             </nav>
 
             <section class="hp-heading width">
@@ -108,4 +131,6 @@
             </section>
         </main>
     </body>
+    
+    <script type="text/javascript" src="./headphones.js"></script>
 </html>

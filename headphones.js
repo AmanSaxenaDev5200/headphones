@@ -1,16 +1,14 @@
 'use strict';
 
-
 document.addEventListener('DOMContentLoaded', function() {
 
 //login modal
-const signup = document.getElementById('signup');
-const heroSignup = document.getElementById('hero-signup');
-const closebtn = document.getElementById('close-modal');
-signup.addEventListener('click', openModal, false);
-heroSignup.addEventListener('click', openModal, false);
-closebtn.addEventListener('click', closeModal, false);
+document.querySelectorAll('.signup-btn').forEach( element => {
+    element.addEventListener('click', openModal, false);
+});
 
+const closeBtn = document.getElementById('close-modal');
+closeBtn.addEventListener('click', closeModal, false);
 
 function openModal() {
     const modal = document.querySelector('.modal');
