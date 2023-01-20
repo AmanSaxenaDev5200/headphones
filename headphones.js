@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     //const loggedin = JSON.parse(localStorage.getItem('loggedin'));
     const loggedin = false;
+
     if (loggedin) {
         initLogin();
     }

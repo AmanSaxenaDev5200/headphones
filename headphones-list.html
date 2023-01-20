@@ -53,29 +53,37 @@
                    <div class="left">
                     <li id="all-option">All</li>
                     <li>
-                        <select name="brand" required>
+                        <select id="hp-brand" name="brand" required>
                             <option value="" disabled selected>Brand</option>
-                            <option>Sennheiser</option>
-                            <option>Beyerdynamic</option>
+                            <option value="All">All</option>
                         </select>
                     </li>
                     <li>
-                        <select name="type" required>
+                        <select id ="hp-type" name="type" required>
                             <option value="" disabled selected>Type</option>
-                            <option>On-Ear</option>
-                            <option>Over-Ear</option>
+                            <option value="All">All</option>
                         </select>
                     </li>
                     <li>
-                        <select name="driver" required>
+                        <select id="hp-driver" name="driver" required>
                             <option value="" disabled selected>Driver</option>
-                            <option>Dynamic</option>
-                            <option>Planar</option>
+                            <option value="All">All</option>
+                        </select>
+                    </li>
+
+                    <li>
+                        <select id="hp-wireless" name="wireless" required>
+                            <option value="" disabled selected>Wireless</option>
+                            <option value="All">All</option>
+                            <option value="true">Wireless</option>
+                            <option value="false">Wired</option>
                         </select>
                     </li>
                    </div>
 
                    <select id="sort">
+                    <option>Popularity (DESC)</option>
+                    <option>Popularity (ASC)</option>
                     <option>Price (DESC)</option>
                     <option>Price (ASC)</option>
                     <option>A-Z (DESC)</option>
@@ -87,70 +95,6 @@
             </div>
 
             <section id="headphones-list">
-                <ul class="width">
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-                </ul>
             </section>
         </main>
         <footer>
@@ -159,4 +103,5 @@
     </body>
 
     <script type="text/javascript" src="./headphones.js"></script>
+    <script type="text/javascript" src="./headphones-list.js"></script>
 </html>

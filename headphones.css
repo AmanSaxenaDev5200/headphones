@@ -296,10 +296,14 @@ main {
     color: black;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 5em;
     text-align: center;
     padding: 5em;
+}
+
+#headphones-list ul a {
+    flex: 1;
 }
 
 #headphones-list img {
