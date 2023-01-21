@@ -29,6 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 headphones.push(thisHp);
             }
 
+            headphones.sort( (a, b) => {
+                const a_name = a.brand + " " + a.modelname;
+                const b_name = b.brand + " " + b.modelname;
+                return a_name == b_name ? 0 : (a_name > b_name ? 1 : -1);
+            });
+
             const hp_list = document.getElementById('headphones-list');
             const hp_ul = document.createElement('ul');
             const sel_brand = document.getElementById('hp-brand');
@@ -66,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const hp_a = createHPListItem(hp);
                 hp_ul.appendChild(hp_a);
             }
+            
             hp_ul.classList.add('width');
             hp_list.appendChild(hp_ul);
         });
