@@ -182,6 +182,10 @@ nav .left {
     height: 0px;
 }
 
+.full-hidden {
+    display: none !important;
+}
+
 
 /* landing page content */
 main {
@@ -308,6 +312,13 @@ main {
 
 #headphones-list img {
     margin-bottom: 1.5em;
+}
+
+#hp-no-exist {
+    color: black;
+    font-size: 24px;
+    text-align: center;
+    padding: 5em;
 }
 
 /* headphone page */
