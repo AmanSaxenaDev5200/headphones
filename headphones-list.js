@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
      /* headphone functions */
      function initHeadphones() {
-        const hp = loadHeadphones().then(hp => {
+        const hpResponse = loadHeadphones().then(hp => {
             for (const prop of hp) {
                 const thisHp = new Headphone(prop['id'], prop['brand'], prop['modelname']);
                 thisHp.type = prop['type'];
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const hp_a = createHPListItem(hp);
                 hp_ul.appendChild(hp_a);
             }
-            
+
             hp_ul.classList.add('width');
             hp_list.appendChild(hp_ul);
         });
@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         hp_li.appendChild(hp_span);
         hp_a.href = './headphone.html';
         hp_a.id ='headphone-' + hp.id;
+        hp_a.addEventListener('click', setHeadphonePage, false);
         hp_a.appendChild(hp_li);
         return hp_a;
     }
@@ -140,15 +141,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        console.log(listHP);
-
-        /*
-        const filteredHP = headphones.filter( element => {
-            return element.brand !== sel_brand.value 
-                && element.type !== sel_type.value 
-                && element.driver !== sel_driver.value
-                && element.wireless  !== sel_wireless.value;
-        });*/
         for (const hp of listHP) {
             const selectedHP = document.getElementById('headphone-' + hp.id);
             selectedHP.classList.add('full-hidden');
@@ -180,6 +172,11 @@ document.addEventListener('DOMContentLoaded', function() {
         sel_driver.value = '';
         sel_wireless.value = '';
         resetList();
+    }
+
+    function setHeadphonePage() {
+        const id = this.id.slice(10);
+        localStorage.setItem('currenthp', id);
     }
     
     class Headphone {

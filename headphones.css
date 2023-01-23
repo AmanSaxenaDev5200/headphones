@@ -380,6 +380,17 @@ main {
     margin-top: 0.5em;
 }
 
+#hp-error {
+    padding: 18em 5em;
+}
+
+#hp-error a {
+    color: white;
+    display: inline-block;
+    margin-top: 1em;
+    border-bottom: 1px solid orange;
+}
+
 /* footer */
 footer {
     background-color: orange;

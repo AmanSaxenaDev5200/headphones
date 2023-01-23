@@ -45,7 +45,10 @@
                 <div class="overlay hidden">
                 </div>
             </nav>
-
+            <div id="hp-error" class="width full-hidden">
+                <h1>Headphone Not Found</h1>
+                <a href="./headphones-list.html">Go back to All Headphones.</a>
+            </div>
             <section class="hp-heading width">
                 <img class="hp-main" src="" width="300px" height="300px">
                 <h1>Beyerdynamic DT 1990 Pro</h1>
@@ -64,43 +67,43 @@
 
             <section class="specs-container">
                 <div class="width">
-                    <ul>
-                        <li>
+                    <ul id="hp-specs">
+                        <li id="spec-brand">
                             <label>Brand</label>
                             <p>Beyerdynamic</p>
                         </li>
     
-                        <li>
+                        <li id="spec-modelname">
                             <label>Model Name</label> 
                             <p>DT1990 Pro</p>
                         </li>
     
-                        <li>
+                        <li id="spec-price">
                             <label>Retail Price</label> 
                             <p>$649.00</p>
                         </li>
     
-                        <li>
+                        <li id="spec-type">
                             <label>Type</label> 
                             <p>Over-ear</p>
                         </li>
     
-                        <li>
+                        <li id="spec-driver">
                             <label>Driver Type</label> 
                             <p>Dynamic</p>
                         </li>
     
-                        <li>
+                        <li id="spec-impedance">
                             <label>Impedance</label> 
                             <p>250 ohms</p>
                         </li>
     
-                        <li>
+                        <li id="spec-sensitivity">
                             <label>Sensitivity</label> 
                             <p>102 dBSPL</p>
                         </li>
     
-                        <li>
+                        <li id="spec-weight">
                             <label>Weight</label> 
                             <p>370g</p>
                         </li>
@@ -114,4 +117,5 @@
     </body>
     
     <script type="text/javascript" src="./headphones.js"></script>
+    <script type="text/javascript" src="./hp-single.js"></script>
 </html>
