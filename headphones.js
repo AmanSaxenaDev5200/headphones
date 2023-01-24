@@ -83,7 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
             users.push(user);
             localStorage.setItem('users', JSON.stringify(users));
             console.log('First user created!');
-            document.getElementById('login-modal').submit();
+            handleLogin(username, password);
+            location.reload();
         } else {
             const tempUsers = getUser(username);
             if (tempUsers.length === 0) {
@@ -92,6 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('users', JSON.stringify(tempList));
                 console.log('User created!');
                 handleLogin(username, password);
+                location.reload();
             } else {
                 console.log('User already exists');
             }
@@ -110,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         console.log('Login success!');
                         localStorage.setItem('currentuser', username);
                         localStorage.setItem('loggedin', JSON.stringify(true));
-                        document.getElementById('login-modal').submit();
+                        location.reload();
                     } else {
                         console.log('Wrong password, try again!')
                     }
@@ -132,12 +134,16 @@ document.addEventListener('DOMContentLoaded', function() {
         signout.addEventListener('click', logOut, false);
     
         const goProfile = document.querySelector('#sub-menu button');
-        goProfile.addEventListener('click', goToProfile, false);
+        goProfile.addEventListener('click', function() {
+            goToProfile(userProfile.username);
+        }, false);
 
         if (heroBtn !== null) {
             heroBtn.removeEventListener('click', openModal, false);
             heroBtn.textContent = 'Go to your Profile'
-            heroBtn.addEventListener('click', goToProfile, false);
+            heroBtn.addEventListener('click', function() {
+                goToProfile(userProfile.username);
+            }, false);
             console.log('Welcome, ' + userProfile.username + '!');
         }
     }
@@ -151,7 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function goToProfile() {
+    function goToProfile(username) {
+        localStorage.setItem('viewingProfile', username); 
         location.href = './profile.html';
     }
 
@@ -179,10 +186,12 @@ document.addEventListener('DOMContentLoaded', function() {
     class User {
         username;
         password;
+        headphones;
 
         constructor(username, password) {
             this.username = username;
             this.password = password;
+            this.headphones = [];
         }
 
         get username() {
