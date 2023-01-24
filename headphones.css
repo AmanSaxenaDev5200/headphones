@@ -32,6 +32,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1em;
+    position: relative;
 }
 
 nav .left {
@@ -71,6 +72,48 @@ nav .left {
 #signup:hover {
     background-color: orange;
     color: white;
+    cursor: pointer;
+}
+
+#user button {
+    background-color: transparent;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+    border: 0;
+    cursor: pointer;
+    padding: 1em;
+}
+
+#sub-menu {
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-right: 1.5em;
+    padding: 1em 1em 1.5em 1em;
+    transition: height 0.2s linear;
+}
+
+#sub-menu button {
+    background-color: orange;
+    color: white;
+    border: 0;
+    padding: 1em 2em;
+    cursor: pointer;
+}
+
+#sub-menu p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    margin-top: 2em;
+    text-align: center;
     cursor: pointer;
 }
 

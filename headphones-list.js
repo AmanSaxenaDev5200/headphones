@@ -130,7 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
         filteredHP = filteredHP.filter(element => {
             return element.wireless === sel_wireless.value || sel_wireless.value === '';
         });
-        console.log(filteredHP);
 
         let listHP = [...headphones];
 

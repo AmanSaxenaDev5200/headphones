@@ -1,17 +1,14 @@
 'use strict';
 
 document.addEventListener('DOMContentLoaded', function() {
-    //const loggedin = JSON.parse(localStorage.getItem('loggedin'));
-    const loggedin = false;
-
-    if (loggedin) {
-        initLogin();
-    }
+    const loggedin = JSON.parse(localStorage.getItem('loggedin'));
 
     /* login modal */
-    document.querySelectorAll('.signup-btn').forEach( element => {
-        element.addEventListener('click', openModal, false);
-    });
+    const signupBtn = document.getElementById('signup');
+    signupBtn.addEventListener('click', openModal, false);
+
+    const heroBtn = document.getElementById('hero-signup');
+    heroBtn.addEventListener('click', openModal, false);
 
     const closeBtn = document.getElementById('close-modal');
     closeBtn.addEventListener('click', closeModal, false);
@@ -22,22 +19,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginBtn = document.getElementById('login-btn');
     loginBtn.addEventListener('click', logUserIn, false);
 
+    const userBtn = document.getElementById('user');
+    userBtn.addEventListener('click', toggleSubMenu, false);
+
     const createUser = document.querySelector('.create-user');
+
+    if (loggedin) {
+        initLogin();
+    }
 
     /* modal functions */
     function openModal() {
-        const modal = document.querySelector('.modal');
+        const modal = document.getElementById('login-modal');
         const overlay = document.querySelector('.overlay');
         if (modal.classList.contains('hidden')) {
             modal.classList.remove('hidden');
             overlay.classList.remove('hidden');
         }
+
+        if (modal.ariaHidden) {
+            modal.ariaHidden = 'false';
+        }
     }
 
     function closeModal() {
-        const modal = document.querySelector('.modal');
+        const modal = document.getElementById('login-modal');
         const overlay = document.querySelector('.overlay');
         modal.classList.add('hidden');
+        modal.ariaHidden = true;
         overlay.classList.add('hidden');
         createUser.classList.add('hidden');
         createBtn.textContent = 'Sign Up';
@@ -112,11 +121,39 @@ document.addEventListener('DOMContentLoaded', function() {
     function initLogin() {
         const currentUser = localStorage.getItem('currentuser');
         const userProfile = getUser(currentUser)[0];
-        console.log('Welcome back ' + userProfile.username + '!');
+        signupBtn.parentNode.classList.add('full-hidden');
+        userBtn.classList.remove('full-hidden');
+        document.querySelector('#user button p').textContent = "Welcome, " + userProfile.username;
+
+        const signout = document.getElementById('sign-out');
+        signout.addEventListener('click', logOut, false);
+    
+        const goProfile = document.querySelector('#sub-menu button');
+        goProfile.addEventListener('click', goToProfile, false);
+
+        heroBtn.removeEventListener('click', openModal, false);
+        heroBtn.textContent = 'Go to your Profile'
+        heroBtn.addEventListener('click', goToProfile, false);
+        console.log('Welcome, ' + userProfile.username + '!');
+    }
+
+    function toggleSubMenu() {
+        const submenu = document.getElementById('sub-menu');
+        if (submenu.classList.contains('hidden')) {
+            submenu.classList.remove('hidden');
+        } else {
+            submenu.classList.add('hidden');
+        }
+    }
+
+    function goToProfile() {
+        location.href = './profile.html';
     }
 
     function logOut() {
-
+        localStorage.removeItem('currentuser');
+        localStorage.removeItem('loggedin');
+        location.reload();
     }
 
     /* user helper functions */

@@ -21,9 +21,20 @@
                 <div class="right">
                     <button class="signup-btn" id="signup">Sign In / Sign Up</button>
                 </div>
-                <form id="login-modal" class="modal hidden">
+
+                <div id="user" class="right full-hidden">
+                    <button>
+                        <i class="fa-regular fa-user fa-xl"></i>
+                        <p>Welcome, mooch</p>
+                    </button>
+                </div>
+                <div id="sub-menu" class="hidden">
+                    <button>Go to Profile</button>
+                    <p id="sign-out"><i class="fa-solid fa-arrow-right-from-bracket"></i>Sign Out</p>
+                </div>
+                <form id="login-modal" class="modal hidden" aria-modal="true" aria-hidden="true">
                     <div class="close">
-                        <button id="close-modal">X</button>
+                        <button id="close-modal" type="button">X</button>
                     </div>
                     <div class="login-container">
                         <div class="left">
