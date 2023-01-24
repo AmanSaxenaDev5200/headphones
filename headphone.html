@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MyHeadphones</title>
         <link rel="stylesheet" href="./headphones.css">
+        <script src="https://kit.fontawesome.com/70f047892b.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header>
@@ -20,9 +21,20 @@
                 <div class="right">
                     <button class="signup-btn" id="signup">Sign In / Sign Up</button>
                 </div>
-                <form id="login-modal" class="modal hidden">
+
+                <div id="user" class="right full-hidden">
+                    <button>
+                        <i class="fa-regular fa-user fa-xl"></i>
+                        <p>Welcome, mooch</p>
+                    </button>
+                </div>
+                <div id="sub-menu" class="hidden">
+                    <button>Go to Profile</button>
+                    <p id="sign-out"><i class="fa-solid fa-arrow-right-from-bracket"></i>Sign Out</p>
+                </div>
+                <form id="login-modal" class="modal hidden" aria-modal="true" aria-hidden="true">
                     <div class="close">
-                        <button id="close-modal">X</button>
+                        <button id="close-modal" type="button">X</button>
                     </div>
                     <div class="login-container">
                         <div class="left">
@@ -51,7 +63,7 @@
             </div>
             <section class="hp-heading width">
                 <img class="hp-main" src="" width="300px" height="300px">
-                <h1>Beyerdynamic DT 1990 Pro</h1>
+                <h1></h1>
             </section>
         </header>
         <main>
@@ -70,42 +82,42 @@
                     <ul id="hp-specs">
                         <li id="spec-brand">
                             <label>Brand</label>
-                            <p>Beyerdynamic</p>
+                            <p></p>
                         </li>
     
                         <li id="spec-modelname">
                             <label>Model Name</label> 
-                            <p>DT1990 Pro</p>
+                            <p></p>
                         </li>
     
                         <li id="spec-price">
                             <label>Retail Price</label> 
-                            <p>$649.00</p>
+                            <p></p>
                         </li>
     
                         <li id="spec-type">
                             <label>Type</label> 
-                            <p>Over-ear</p>
+                            <p></p>
                         </li>
     
                         <li id="spec-driver">
                             <label>Driver Type</label> 
-                            <p>Dynamic</p>
+                            <p></p>
                         </li>
     
                         <li id="spec-impedance">
                             <label>Impedance</label> 
-                            <p>250 ohms</p>
+                            <p></p>
                         </li>
     
                         <li id="spec-sensitivity">
                             <label>Sensitivity</label> 
-                            <p>102 dBSPL</p>
+                            <p></p>
                         </li>
     
                         <li id="spec-weight">
                             <label>Weight</label> 
-                            <p>370g</p>
+                            <p></p>
                         </li>
                     </ul>
                 </div>

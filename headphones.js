@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const signupBtn = document.getElementById('signup');
     signupBtn.addEventListener('click', openModal, false);
 
-    const heroBtn = document.getElementById('hero-signup');
-    heroBtn.addEventListener('click', openModal, false);
+    let heroBtn = null;
+    if (document.getElementById('hero-signup') !== null) {
+        heroBtn = document.getElementById('hero-signup');
+        heroBtn.addEventListener('click', openModal, false);
+    }
 
     const closeBtn = document.getElementById('close-modal');
     closeBtn.addEventListener('click', closeModal, false);
@@ -131,10 +134,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const goProfile = document.querySelector('#sub-menu button');
         goProfile.addEventListener('click', goToProfile, false);
 
-        heroBtn.removeEventListener('click', openModal, false);
-        heroBtn.textContent = 'Go to your Profile'
-        heroBtn.addEventListener('click', goToProfile, false);
-        console.log('Welcome, ' + userProfile.username + '!');
+        if (heroBtn !== null) {
+            heroBtn.removeEventListener('click', openModal, false);
+            heroBtn.textContent = 'Go to your Profile'
+            heroBtn.addEventListener('click', goToProfile, false);
+            console.log('Welcome, ' + userProfile.username + '!');
+        }
     }
 
     function toggleSubMenu() {
