@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('#spec-brand p').textContent = hp.brand;
                 document.querySelector('#spec-modelname p').textContent = hp.modelname;
                 document.querySelector('#spec-price p').textContent = "$"+ hp.price + ".00";
-                document.querySelector('#spec-type p').textContent = hp.type;
+                let wireless = (hp.wireless === 'true') ? 'Wireless' : 'Wired';
+                document.querySelector('#spec-type p').textContent = hp.type + ' ' + wireless;
                 document.querySelector('#spec-driver p').textContent = hp.driver;
                 document.querySelector('#spec-impedance p').textContent = hp.impedance;
                 document.querySelector('#spec-sensitivity p').textContent = hp.sensitivity;

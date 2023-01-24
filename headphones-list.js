@@ -41,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const sel_type = document.getElementById('hp-type');
             const sel_driver = document.getElementById('hp-driver');
 
-            let wireless = '';
             for (const hp of headphones) {
                 /* generate filter options */
                 if (hp_brands.indexOf(hp.brand) < 0) {
@@ -91,11 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const hp_span = document.createElement('span');
         const hp_img = document.createElement('img');
         hp_h3.textContent = hp.brand + " " + hp.modelname;
-        if (hp.wireless === 'true') {
-            wireless = 'Wireless';
-        } else {
-            wireless = 'Wired';
-        }
+        let wireless = (hp.wireless === 'true') ? 'Wireless' : 'Wired';
         hp_span.textContent = hp.type + " " + wireless;
         hp_img.width = 150;
         hp_img.height = 150;
