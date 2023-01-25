@@ -29,6 +29,15 @@ a {
 
 /* navigation */
 
+#landing-header {
+    background-image: url('../img/header-image.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 20%;
+    background-attachment: fixed;
+    color: #EBEBEB;
+}
+
 header {
     background-color: #161412;
     color: #EBEBEB;
@@ -291,11 +300,31 @@ nav .left {
 }
 
 .info li {
-    color: #161412;
+    color: #1B2937;
     display: flex;
-    gap: 2em;
+    font-size: 18px;
+    line-height: 28px;
+    max-width: 720px;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 5em;
+}
+
+.info li:last-child {
     margin-bottom: 2em;
+}
+
+.info strong {
+    color: #B48E31;
+}
+
+.info i {
+    color: #E6AF2E;
+    margin-right: 0.5em;
+}
+
+.info p {
+    flex: 2;
 }
 
 /* database content */
@@ -724,4 +753,21 @@ footer {
     color: #EBEBEB;
     text-align: center;
     padding: 2em;
+}
+
+footer i {
+    margin-right: 0.5em;
+}
+
+footer p {
+    margin-bottom: 1em;
+}
+
+footer a {
+    color: #EBEBEB;
+    font-size: 14px;
+}
+
+footer a:hover {
+    color:#E6AF2E;
 }
