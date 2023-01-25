@@ -1,81 +1,43 @@
 'use-strict'
 
-class Review {
-    user_id;
-    headphone_id;
-    title;
-    rating;
-    content;
-
-    constructor(user_id, headphone_id, title, rating, content) {
-        this.user_id = user_id;
-        this.headphone_id = headphone_id;
-        this.title = title;
-        this.rating = rating;
-        this.content = content;
-    }
-}
-
-class Headphone {
-    id;
-    brand;
-    modelname;
-    type;
-    impedance;
-    sensitivity;
-    weight;
-    driver;
-    price;
-    wireless;
-    ownedby;
-
-    constructor(id, brand, modelname) {
-        this.id = id;
-        this.brand = brand;
-        this.modelname = modelname;
-    }
-}
+import Headphone,{loadHeadphones} from './headphone.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const headphones = [];
-    initHeadphones();
+    const params = (new URL(document.location)).searchParams;
+    const hpID = Number.parseInt(params.get('hpID'));
 
     function initHeadphones() {
         const hpResponse = loadHeadphones().then(hp => {
             for (const prop of hp) {
-                const thisHp = new Headphone(prop['id'], prop['brand'], prop['modelname']);
-                thisHp.type = prop['type'];
-                thisHp.impedance = prop['impedance'];
-                thisHp.sensitivity = prop['sensitivity'];
-                thisHp.weight = prop['weight'];
-                thisHp.driver = prop['driver-type'];
-                thisHp.price = prop['price'];
-                thisHp.wireless = prop['wireless'];
-                thisHp.ownedby = prop['ownedby'];
+                const thisHp = new Headphone({
+                    'id': prop['id'],
+                    'brand': prop['brand'],
+                    'modelname': prop['modelname'],
+                    'type': prop['type'],
+                    'impedance': prop['impedance'],
+                    'sensitivity': prop['sensitivity'],
+                    'weight': prop['weight'],
+                    'driver-type': prop['driver-type'],
+                    'price': prop['price'],
+                    'wireless': prop['wireless']
+                });
                 headphones.push(thisHp);
             }
-            
-            if (localStorage.getItem('currenthp') === null) {
-                document.getElementById('hp-error').classList.remove('full-hidden');
-                document.querySelector('.hp-heading').classList.add('full-hidden');
-                document.querySelector('main').classList.add('full-hidden');
-            } else {
-                const hpID = Number(localStorage.getItem('currenthp'));
-                const hp = headphones.find(element => element.id === hpID);
-                
-                document.querySelector('.hp-heading h1').textContent = hp.brand + " " + hp.modelname;
 
-                document.querySelector('#spec-brand p').textContent = hp.brand;
-                document.querySelector('#spec-modelname p').textContent = hp.modelname;
-                document.querySelector('#spec-price p').textContent = "$"+ hp.price + ".00";
-                let wireless = (hp.wireless === 'true') ? 'Wireless' : 'Wired';
-                document.querySelector('#spec-type p').textContent = hp.type + ' ' + wireless;
-                document.querySelector('#spec-driver p').textContent = hp.driver;
-                document.querySelector('#spec-impedance p').textContent = hp.impedance;
-                document.querySelector('#spec-sensitivity p').textContent = hp.sensitivity;
-                document.querySelector('#spec-weight p').textContent = hp.weight;
+            const currentHP = headphones.find(element => element.id === hpID);
 
-            }
+            document.querySelector('.hp-heading h1').textContent = currentHP.brand + " " + currentHP.modelname;
+
+            document.querySelector('#spec-brand p').textContent = currentHP.brand;
+            document.querySelector('#spec-modelname p').textContent = currentHP.modelname;
+            document.querySelector('#spec-price p').textContent = "$"+ currentHP.price + ".00";
+            let wireless = (currentHP.wireless === 'true') ? 'Wireless' : 'Wired';
+            document.querySelector('#spec-type p').textContent = currentHP.type + ' ' + wireless;
+            document.querySelector('#spec-driver p').textContent = currentHP.driver;
+            document.querySelector('#spec-impedance p').textContent = currentHP.impedance;
+            document.querySelector('#spec-sensitivity p').textContent = currentHP.sensitivity;
+            document.querySelector('#spec-weight p').textContent = currentHP.weight;
 
             document.getElementById('specs-tab').addEventListener('click', function(){
                 if (!this.classList.contains('tab-selected')) {
@@ -92,23 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('specs-tab').classList.remove('tab-selected');
                     document.getElementById('specs-container').classList.add('full-hidden');
                     this.classList.add('tab-selected');
-                    populateReviews();
+                    populateReviews(hpID);
                 }
             });
         });
     }
 
-    async function loadHeadphones() {
-        const response = await fetch('./test.json');
-        const names = await response.json();
-        return names;
-    }
-
-    function populateReviews() {
+    function populateReviews(hpID) {
         const reviews_container = document.getElementById('reviews');
-        //reviews_container.innerHTML = '';
         let reviews = localStorage.getItem('reviews');
-        const hpID = Number.parseInt(localStorage.getItem('currenthp'));
         if (reviews === null) {
             document.getElementById('no-reviews').classList.remove('full-hidden');
         } else {
@@ -162,4 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }           
         }
     }
+
+    initHeadphones();
 });
