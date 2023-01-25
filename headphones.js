@@ -5,16 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /* login modal */
     const signupBtn = document.getElementById('signup');
-    signupBtn.addEventListener('click', openModal, false);
+    signupBtn.addEventListener('click', openLoginModal, false);
 
     let heroBtn = null;
     if (document.getElementById('hero-signup') !== null) {
         heroBtn = document.getElementById('hero-signup');
-        heroBtn.addEventListener('click', openModal, false);
+        heroBtn.addEventListener('click', openLoginModal, false);
     }
 
-    const closeBtn = document.getElementById('close-modal');
-    closeBtn.addEventListener('click', closeModal, false);
+    const closeBtn = document.querySelectorAll('.close-modal');
+    closeBtn.forEach(function(ele) {
+        ele.addEventListener('click', closeLoginModal, false);
+    });
 
     const createBtn = document.getElementById('create-btn');
     createBtn.addEventListener('click', setupUser, false);
@@ -27,12 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const createUser = document.querySelector('.create-user');
 
-    if (loggedin) {
-        initLogin();
-    }
-
     /* modal functions */
-    function openModal() {
+    function openLoginModal() {
         const modal = document.getElementById('login-modal');
         const overlay = document.querySelector('.overlay');
         if (modal.classList.contains('hidden')) {
@@ -45,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function closeModal() {
+    function closeLoginModal() {
         const modal = document.getElementById('login-modal');
         const overlay = document.querySelector('.overlay');
         modal.classList.add('hidden');
@@ -139,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, false);
 
         if (heroBtn !== null) {
-            heroBtn.removeEventListener('click', openModal, false);
+            heroBtn.removeEventListener('click', openLoginModal, false);
             heroBtn.textContent = 'Go to your Profile'
             heroBtn.addEventListener('click', function() {
                 goToProfile(userProfile.username);
@@ -201,5 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
         get password() {
             return this.password;
         }
+    }
+
+    if (loggedin) {
+        initLogin();
     }
 });
