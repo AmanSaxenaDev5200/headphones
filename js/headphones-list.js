@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('hp-type').addEventListener('change', populateFilteredList, false);
     document.getElementById('hp-driver').addEventListener('change', populateFilteredList, false);
     document.getElementById('hp-wireless').addEventListener('change', populateFilteredList, false);
+    document.getElementById('sort').addEventListener('change', initSortList, false);
     document.getElementById('all-option').addEventListener('click', resetAll, false);
     
      /* headphone functions */
@@ -100,26 +101,91 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function populateFilteredList() {
-        const hp_list = filterList();
-        populateList(hp_list);
+        const sortMethod = document.getElementById('sort').value;
+        sortList(sortMethod);
+    }
+
+    function initSortList() {
+        sortList(this.value);
     }
          
     function sortList(sortMethod) {
+        let filteredHP = filterList();
+        const reviews = JSON.parse(localStorage.getItem('reviews'));
+        let tempReviews = [];
+        let hpNumReviews = [];
+        let sortedHP = [];
         switch (sortMethod) {
             case 'high-low-price':
-
+                filteredHP.sort((a,b) => {
+                    return a.price == b.price ? 0 : (a.price < b.price ? 1 : -1);
+                });
+                break;
             case 'low-high-price':
-
+                filteredHP.sort((a,b) => {
+                    return a.price == b.price ? 0 : (a.price > b.price ? 1 : -1);
+                });
+                break;
             case 'high-low-rating':
+                    for (const hp of filteredHP) {
+                        tempReviews = reviews.filter(element => element.headphone_id === hp.id);
+                        hpNumReviews.push(
+                            {
+                                'headphone_id': hp.id, 
+                                'numReviews': tempReviews.length
+                            }
+                        );
+                    }
 
+                    hpNumReviews.sort((a, b) => {
+                        return a.numReviews == b.numReviews ? 0 : (a.numReviews < b.numReviews ? 1 : -1);
+                    });
+                    
+                    for (let i = 0; i < hpNumReviews.length; i++) {
+                        const hp = filteredHP.find(element => element.id === hpNumReviews[i].headphone_id);
+                        sortedHP.push(hp);
+                    }
+                    filteredHP = sortedHP;
+                    break;
             case 'low-high-rating':
+                for (const hp of filteredHP) {
+                    tempReviews = reviews.filter(element => element.headphone_id === hp.id);
+                    hpNumReviews.push(
+                        {
+                            'headphone_id': hp.id, 
+                            'numReviews': tempReviews.length
+                        }
+                    );
+                }
 
+                hpNumReviews.sort((a, b) => {
+                    return a.numReviews == b.numReviews ? 0 : (a.numReviews > b.numReviews ? 1 : -1);
+                });
+                
+                for (let i = 0; i < hpNumReviews.length; i++) {
+                    const hp = filteredHP.find(element => element.id === hpNumReviews[i].headphone_id);
+                    sortedHP.push(hp);
+                }
+                filteredHP = sortedHP;
+                break;
             case 'A-Z':
-
+                filteredHP.sort((a,b) => {
+                    const a_name = a.brand + " " + a.modelname;
+                    const b_name = b.brand + " " + b.modelname;
+                    return a_name == b_name ? 0 : (a_name > b_name ? 1 : -1);
+                });
+                break;
             case 'Z-A':
-
-            
+                filteredHP.sort((a,b) => {
+                    const a_name = a.brand + " " + a.modelname;
+                    const b_name = b.brand + " " + b.modelname;
+                    return a_name == b_name ? 0 : (a_name < b_name ? 1 : -1);
+                });
+                break;
+            default:
+                console.log('Error, undefined sorting method chosen.');
         }
+        populateList(filteredHP);
     }
 
     function resetList() {
@@ -136,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sel_type.value = '';
         sel_driver.value = '';
         sel_wireless.value = '';
-        resetList();
+        populateFilteredList();
     }
 
     function populateList(headphones_list) {
