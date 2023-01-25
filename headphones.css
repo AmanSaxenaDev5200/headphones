@@ -201,7 +201,7 @@ nav .left {
 }
 
 .login-container button {
-    color: #EBEBEB;
+    color: white;
     margin-top: 2em;
     max-width: 150px;
     padding: 1em 0.5em;
@@ -216,7 +216,7 @@ nav .left {
 .login-container .right button {
     color: #161412;
     background-color: transparent;
-    border: 1px solid #EBEBEB;
+    border: 1px solid grey;
 }
 
 .overlay {
@@ -489,6 +489,10 @@ main {
     display: inline-block;
     margin-top: 1em;
     border-bottom: 1px solid #B48E31;
+}
+
+#hp-error i {
+    padding-right: 0.25em;
 }
 
 /* profile */

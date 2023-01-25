@@ -24,39 +24,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 headphones.push(thisHp);
             }
-
-            console.log(hpID);
             const currentHP = headphones.find(element => element.id === hpID);
-            document.querySelector('.hp-heading h1').textContent = currentHP.brand + " " + currentHP.modelname;
+            if (currentHP === undefined) {
+                document.querySelector('main').classList.add('full-hidden');
+                document.getElementById('hp-error').classList.remove('full-hidden');
+                document.querySelector('.hp-heading').classList.add('full-hidden');
+            } else {
+                document.querySelector('.hp-heading h1').textContent = currentHP.brand + " " + currentHP.modelname;
 
-            document.querySelector('#spec-brand p').textContent = currentHP.brand;
-            document.querySelector('#spec-modelname p').textContent = currentHP.modelname;
-            document.querySelector('#spec-price p').textContent = "$"+ Number(currentHP.price).toFixed(2);
-            let wireless = (currentHP.wireless === 'true') ? 'Wireless' : 'Wired';
-            document.querySelector('#spec-type p').textContent = currentHP.type + ' ' + wireless;
-            document.querySelector('#spec-driver p').textContent = currentHP.driver;
-            document.querySelector('#spec-impedance p').textContent = currentHP.impedance;
-            document.querySelector('#spec-sensitivity p').textContent = currentHP.sensitivity;
-            document.querySelector('#spec-weight p').textContent = currentHP.weight;
-
-            document.getElementById('specs-tab').addEventListener('click', function(){
-                if (!this.classList.contains('tab-selected')) {
-                    document.getElementById('specs-container').classList.remove('full-hidden');
-                    document.getElementById('reviews-tab').classList.remove('tab-selected');
-                    document.getElementById('reviews-container').classList.add('full-hidden');
-                    this.classList.add('tab-selected');
-                }
-            });
-
-            document.getElementById('reviews-tab').addEventListener('click', function() {
-                if (!this.classList.contains('tab-selected')) {
-                    document.getElementById('reviews-container').classList.remove('full-hidden');
-                    document.getElementById('specs-tab').classList.remove('tab-selected');
-                    document.getElementById('specs-container').classList.add('full-hidden');
-                    this.classList.add('tab-selected');
-                    populateReviews(hpID);
-                }
-            });
+                document.querySelector('#spec-brand p').textContent = currentHP.brand;
+                document.querySelector('#spec-modelname p').textContent = currentHP.modelname;
+                document.querySelector('#spec-price p').textContent = "$"+ Number(currentHP.price).toFixed(2);
+                let wireless = (currentHP.wireless === 'true') ? 'Wireless' : 'Wired';
+                document.querySelector('#spec-type p').textContent = currentHP.type + ' ' + wireless;
+                document.querySelector('#spec-driver p').textContent = currentHP.driver;
+                document.querySelector('#spec-impedance p').textContent = currentHP.impedance;
+                document.querySelector('#spec-sensitivity p').textContent = currentHP.sensitivity;
+                document.querySelector('#spec-weight p').textContent = currentHP.weight;
+    
+                document.getElementById('specs-tab').addEventListener('click', function(){
+                    if (!this.classList.contains('tab-selected')) {
+                        document.getElementById('specs-container').classList.remove('full-hidden');
+                        document.getElementById('reviews-tab').classList.remove('tab-selected');
+                        document.getElementById('reviews-container').classList.add('full-hidden');
+                        this.classList.add('tab-selected');
+                    }
+                });
+    
+                document.getElementById('reviews-tab').addEventListener('click', function() {
+                    if (!this.classList.contains('tab-selected')) {
+                        document.getElementById('reviews-container').classList.remove('full-hidden');
+                        document.getElementById('specs-tab').classList.remove('tab-selected');
+                        document.getElementById('specs-container').classList.add('full-hidden');
+                        this.classList.add('tab-selected');
+                        populateReviews(hpID);
+                    }
+                });
+            }
         });
     }
 

@@ -16,14 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
     let user = '';
     let user_rights = false;
 
-    if (!checkAnyUsers()) {
+    if (!checkAnyUsers() || profile === undefined) {
         if (localStorage.getItem('currentuser') !== null) {
             user = getUser(localStorage.getItem('currentuser'))[0];
             user_rights = profile.username === user.username;
         } else {
-            user = new User('username', 'default');
+            user = new User(undefined, undefined);
         }
-        
+
         document.querySelector('#profile-heading h1').textContent = profile.username;
 
         if (user_rights) {
@@ -56,6 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 populateReviews(user_rights);
             }
         });
+    } else {
+        document.querySelector('main').classList.add('full-hidden');
+        document.getElementById('hp-error').classList.remove('full-hidden');
+        document.querySelector('.hp-heading').classList.add('full-hidden');
     }
 
     function initHeadphones() {
@@ -179,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const overlay = document.querySelector('.overlay');
             openModal(addReviewModal, overlay);
         } else {
-            alert('Add headphones to your collection to review them!');
+            alert('Add more headphones to your collection to review them!');
         }
     }
 
