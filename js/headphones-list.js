@@ -78,14 +78,16 @@ document.addEventListener('DOMContentLoaded', function() {
             hp_ul.classList.add('width');
             hp_list.appendChild(hp_ul);
         });
-     }  
+     }
 
     function filterList() {
-        resetList();
         const sel_brand = document.getElementById('hp-brand');
         const sel_type = document.getElementById('hp-type');
         const sel_driver = document.getElementById('hp-driver');
         const sel_wireless = document.getElementById('hp-wireless');
+
+        const hp_list = document.getElementById('headphones-list');
+        const hp_ul = document.createElement('ul');
 
         let filteredHP = [...headphones];
         filteredHP = filteredHP.filter(element => {
@@ -95,33 +97,11 @@ document.addEventListener('DOMContentLoaded', function() {
             && (element.wireless === sel_wireless.value || !sel_wireless.value);
         });
 
-        let listHP = [...headphones];
-
-        filteredHP.forEach(element => {
-            const index = listHP.indexOf(element);
-            if (index >= 0) {
-                listHP = listHP.filter( (element, idx) => idx !== index);
-            }
-        });
-
-        for (const hp of listHP) {
-            const selectedHP = document.querySelector('#headphones-list a[data-hp-id=\"'+ hp.id + '\"]');
-            selectedHP.classList.add('full-hidden');
-        }
-        if (listHP.length === headphones.length) {
-            document.getElementById('hp-no-exist').classList.remove('full-hidden');
-            document.querySelector('#headphones-list ul').classList.add('full-hidden');
-        }
+        populateList(filteredHP);
     }
 
     function resetList() {
-        const listItems = document.querySelectorAll('#headphones-list .full-hidden');
-        if (listItems) {
-            listItems.forEach(element => {
-                element.classList.remove('full-hidden');
-            });
-        }
-        document.getElementById('hp-no-exist').classList.add('full-hidden');
+        populateList(headphones);
     }
 
     function resetAll() {
@@ -135,6 +115,20 @@ document.addEventListener('DOMContentLoaded', function() {
         sel_driver.value = '';
         sel_wireless.value = '';
         resetList();
+    }
+
+    function populateList(headphones_list) {
+        const hp_list = document.getElementById('headphones-list');
+        hp_list.innerHTML = '';
+        const hp_ul = document.createElement('ul');
+
+        for (const hp of headphones_list) {
+            const hp_a = createHPListItem(hp);
+            hp_ul.appendChild(hp_a);
+        }
+
+        hp_ul.classList.add('width');
+        hp_list.appendChild(hp_ul);
     }
 
     initHeadphones();
