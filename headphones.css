@@ -89,7 +89,7 @@ nav .left {
 
 #user button {
     background-color: transparent;
-    color: white;
+    color: #EBEBEB;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -100,8 +100,8 @@ nav .left {
 }
 
 #sub-menu {
-    background-color: white;
-    color: black;
+    background-color: #EBEBEB;
+    color: #161412;
     position: absolute;
     top: 100%;
     right: 0;
@@ -111,8 +111,8 @@ nav .left {
 }
 
 #sub-menu button {
-    background-color: orange;
-    color: white;
+    background-color: #B48E31;
+    color: #FFFFFF;
     border: 0;
     padding: 1em 2em;
     cursor: pointer;
@@ -131,8 +131,8 @@ nav .left {
 
 /* account modal */
 .modal {
-    background-color: white;
-    color: black;
+    background-color: #FFFFFF;
+    color: #161412;
     display: flex;
     flex-direction: column;
     padding: 0 2em 4em 2em;
@@ -178,7 +178,7 @@ nav .left {
 }
 
 .login-container .left {
-    border-right: 2px solid #eeeeee;
+    border-right: 2px solid #EBEBEB;
     min-width: 200px;
 }
 
@@ -201,7 +201,7 @@ nav .left {
 }
 
 .login-container button {
-    color: white;
+    color: #EBEBEB;
     margin-top: 2em;
     max-width: 150px;
     padding: 1em 0.5em;
@@ -210,13 +210,13 @@ nav .left {
 }
 
 .login-container .left button {
-    background-color: orange;
+    background-color: #B48E31;
 }
 
 .login-container .right button {
-    color: black;
+    color: #161412;
     background-color: transparent;
-    border: 1px solid #acacac;
+    border: 1px solid #EBEBEB;
 }
 
 .overlay {
@@ -260,7 +260,7 @@ main {
 }
 
 .hero-text h1 {
-    color:#FBF5F3;
+    color:#FFFFFF;
     margin-bottom: 0.5em;
 }
 
@@ -279,7 +279,7 @@ main {
 }
 
 .info-container {
-    background-color: #fffcf2;
+    background-color: #FFFFFF;
 }
 
 .info {
@@ -290,11 +290,10 @@ main {
 }
 
 .info li {
-    color: black;
+    color: #161412;
     display: flex;
     gap: 2em;
     align-items: center;
-
     margin-bottom: 2em;
 }
 
@@ -306,15 +305,15 @@ main {
 }
 
 #filter-options {
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 #filter-options ul {
-    color: black;
+    color: #161412;
     display: flex;
     justify-content: space-between;
     padding: 1em 2em;
-    border-bottom: 2px solid #eeeeee;
+    border-bottom: 2px solid #EBEBEB;
 }
 
 #filter-options .left {
@@ -350,11 +349,11 @@ main {
 }
 
 #headphones-list {
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 #headphones-list ul {
-    color: black;
+    color: #161412;
     display: grid;
     grid-gap: 5em;
     grid-template-columns: repeat(auto-fill, 150px);
@@ -372,7 +371,7 @@ main {
 }
 
 #hp-no-exist {
-    color: black;
+    color: #161412;
     font-size: 24px;
     text-align: center;
     padding: 5em;
@@ -393,11 +392,11 @@ main {
 }
 
 .tab-options {
-    color: black;
+    color: #161412;
     display: flex;
     justify-content: flex-start;
     padding: 0.5em 0;
-    border-bottom: 2px solid #eeeeee;
+    border-bottom: 2px solid #EBEBEB;
 }
 
 .tab-options li {
@@ -405,24 +404,24 @@ main {
 }
 
 .tab-options li:hover {
-    color: orange;
+    color: #E6AF2E;
     cursor: pointer;
 }
 
 .tab-container {
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 .tab-selected {
-    color: orange;
+    color: #E6AF2E;
 }
 
 #specs-container {
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 #specs-container ul {
-    color: black;
+    color: #161412;
     margin: 0 auto;
     padding: 3em 0 2em 4em;
     display: grid;
@@ -445,13 +444,13 @@ main {
 }
 
 #reviews-container {
-    background-color: white;
+    background-color: #FFFFFF;
 }
 
 #reviews-container ul {
     display: flex;
     flex-direction: column;
-    color: black;
+    color: #161412;
     padding: 2em 0 4em 4em;
 }
 
@@ -470,7 +469,7 @@ main {
 
 #reviews-container ul div {
     margin-top: 0.5em;
-    color: orange;
+    color: #B48E31;
 }
 
 .review-content {
@@ -478,7 +477,7 @@ main {
 }
 
 .star-point {
-    color: orange;
+    color: #E6AF2E;
 }
 
 #hp-error {
@@ -489,12 +488,12 @@ main {
     color: white;
     display: inline-block;
     margin-top: 1em;
-    border-bottom: 1px solid orange;
+    border-bottom: 1px solid #B48E31;
 }
 
 /* profile */
 .does-not-exist {
-    color: black;
+    color: #161412;
     text-align: center;
     padding: 5em;
 }
@@ -506,7 +505,7 @@ main {
 }
 
 #profile-list i {
-    color: orange;
+    color: #E6AF2E;
     position: absolute;
     top: 0;
     right: -20%;
@@ -515,7 +514,7 @@ main {
 
 #add-hp-modal {
     height: 80vh;
-    border: 1px solid black;
+    border: 1px solid #1B2937;
     overflow-y: scroll;
     padding: 0 1em 0 2em;
     width: 70vw;
@@ -568,7 +567,7 @@ main {
 }
 
 #modal-brand-section .selected {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #1B2937;
 }
 
 .hp-btn-container {
@@ -578,7 +577,7 @@ main {
 }
 
 .hp-btn-container button {
-    background-color: orange;
+    background-color: #B48E31;
     color: white;
     padding: 0.5em 1em 0.5em 1em;
     border: 0;
@@ -586,7 +585,7 @@ main {
 
 #add-review-modal {
     height: 80vh;
-    border: 1px solid black;
+    border: 1px solid #1B2937;
     padding: 0 2em 2em 2em;
     width: 50vw;
 }
@@ -632,7 +631,7 @@ main {
 }
 
 .star-rating:checked ~ .star {
-    color: orange;
+    color: #E6AF2E;
 }
 
 #add-review-container input[name="star"] {
@@ -643,7 +642,7 @@ main {
     width: 100px;
     padding: 0.5em 2em;
     border: 0;
-    background-color: orange;
+    background-color: #B48E31;
     color: white;
     margin: 2em auto 0 auto;
 }
@@ -657,7 +656,7 @@ main {
     position: absolute;
     top: 0;
     left: 0;
-    color: orange;
+    color: #E6AF2E;
     cursor: pointer;
 }
 
