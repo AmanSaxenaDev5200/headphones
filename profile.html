@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="overlay hidden">
+                <div class="overlay full-hidden">
                 </div>
             </nav>
 
@@ -67,14 +67,14 @@
             <section class="tab-container">
                 <div class="width">
                     <ul class="tab-options">
-                      <li>Headphones Owned</li>
-                      <li>Reviews</li>
+                      <li id="owned-tab" class="tab-selected">Headphones Owned</li>
+                      <li id="reviews-tab">Reviews</li>
                     </ul>
                 </div>
             </section>
 
             <section id="headphones-list">
-                <div id="hp-btn-container" class="width full-hidden">
+                <div class="hp-btn-container width full-hidden">
                     <button id="add-hp">Add Headphone</button>>
                     <button id="rm-hp">Remove Headphone</button>
                 </div>
@@ -92,6 +92,101 @@
                         </ul>
                     </div>
                 </form>
+            </section>
+
+            <section id="reviews-container" class="full-hidden">
+                <div class="hp-btn-container width full-hidden">
+                    <button id="add-review">Add Review</button>>
+                    <button id="rm-review">Edit Review</button>
+                </div>
+                <h1 id="profile-no-reviews" class="full-hidden">No Reviews in Collection</h1>
+                <form id="add-review-modal" class="modal full-hidden" aria-modal="true" aria-hidden="true">
+                    <div class="close">
+                        <button id="add-review-close" class="close-modal" type="button">X</button>
+                    </div>
+                    <div id="add-review-container">
+                        <label>Select Headphone to Review</label>
+                        <select>
+
+                        </select>
+
+                        <label>Title</label>
+                        <input type="text">
+                        
+                        <label>Rating</label>
+                        <div id="five-stars">
+                            <input class="star-rating" type="radio" id="star-5" name="star" value="5">
+                            <label class="star" for="star-5"><i class="fa-solid fa-star fa-lg"></i></label>
+
+                            <input class="star-rating" type="radio" id="star-4" name="star" value="4">
+                            <label class="star" for="star-4"><i class="fa-solid fa-star fa-lg"></i></label>
+                            
+                            <input class="star-rating" type="radio" id="star-3" name="star" value="3">
+                            <label class="star" for="star-3"><i class="fa-solid fa-star fa-lg"></i></label>
+                            
+                            <input class="star-rating" type="radio" id="star-2" name="star" value="2">
+                            <label class="star" for="star-2"><i class="fa-solid fa-star fa-lg"></i></label>
+                            
+                            <input class="star-rating" type="radio" id="star-1" name="star" value="1">
+                            <label class="star" for="star-1"><i class="fa-solid fa-star fa-lg"></i></label>
+                        </div>
+
+                        <label>Review</label>
+                        <textarea rows="10" cols="20"></textarea>
+
+                        <button id="save-review">Save</button>
+
+                    </div>
+                </form>
+                <div class="width">
+                    <ul>
+                        <li>
+                            <h3>Title</h3>
+                            <span><label>reviewed by <a href="./profile.html">bob</a></label><label>07/24/2019</label></span>
+                            <div>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </li>
+                        <li>
+                            <h3>Title</h3>
+                            <span><label>reviewed by <a href="./profile.html">jill</a></label><label>07/24/2019</label></span>
+                            <div>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </li>
+                        <li>
+                            <h3>Title</h3>
+                            <span><label>reviewed by <a href="./profile.html">henry</a></label><label>07/24/2019</label></span>
+                            <div>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                        </li>
+                    </ul>
+                </div>
             </section>
         </main>
         <footer>

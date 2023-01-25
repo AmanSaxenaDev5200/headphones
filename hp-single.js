@@ -1,5 +1,41 @@
 'use-strict'
 
+class Review {
+    user_id;
+    headphone_id;
+    title;
+    rating;
+    content;
+
+    constructor(user_id, headphone_id, title, rating, content) {
+        this.user_id = user_id;
+        this.headphone_id = headphone_id;
+        this.title = title;
+        this.rating = rating;
+        this.content = content;
+    }
+}
+
+class Headphone {
+    id;
+    brand;
+    modelname;
+    type;
+    impedance;
+    sensitivity;
+    weight;
+    driver;
+    price;
+    wireless;
+    ownedby;
+
+    constructor(id, brand, modelname) {
+        this.id = id;
+        this.brand = brand;
+        this.modelname = modelname;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const headphones = [];
     initHeadphones();
@@ -65,73 +101,5 @@ document.addEventListener('DOMContentLoaded', function() {
         const response = await fetch('./test.json');
         const names = await response.json();
         return names;
-    }
-
-    class Review {
-        user_id;
-        headphone_id;
-        title;
-        rating;
-        content;
-
-        constructor(user_id, headphone_id, title, rating, content) {
-            this.user_id = user_id;
-            this.headphone_id = headphone_id;
-            this.title = title;
-            this.rating = rating;
-            this.content = content;
-        }
-    }
-
-    class Headphone {
-        id;
-        brand;
-        modelname;
-        type;
-        impedance;
-        sensitivity;
-        weight;
-        driver;
-        price;
-        wireless;
-        ownedby;
-    
-        constructor(id, brand, modelname) {
-            this.id = id;
-            this.brand = brand;
-            this.modelname = modelname;
-        }
-    
-        set type(type) {
-            this.type=type;
-        }
-    
-        set impedance(impedance) {
-            this.impedance = impedance;
-        }
-    
-        set sensitivity(sensitivity) {
-            this.sensitivity = senstivity;
-        }
-    
-        set weight(weight) {
-            this.weight = weight;
-        }
-    
-        set driver(driver) {
-            this.driver = driver;
-        }
-    
-        set price(price) {
-            this.price = price;
-        }
-    
-        set wireless(wireless) {
-            this.wireless = wireless;
-        }
-    
-        set ownedby(ownedby) {
-            this.ownedby = ownedby;
-        }
     }
 });

@@ -1,82 +1,56 @@
 'use-strict'
 
+class User {
+    username;
+    password;
+    headphones;
+
+    constructor(username, password) {
+        this.username = username;
+        this.password = password;
+        this.headphones = [];
+    }
+}
+
+class Review {
+    user_id;
+    headphone_id;
+    title;
+    rating;
+    content;
+    date;
+
+    constructor(user_id, headphone_id, title, rating, content, date) {
+        this.user_id = user_id;
+        this.headphone_id = headphone_id;
+        this.title = title;
+        this.rating = rating;
+        this.content = content;
+        this.date = date;
+    }
+}
+
+class Headphone {
+    id;
+    brand;
+    modelname;
+    type;
+    impedance;
+    sensitivity;
+    weight;
+    driver;
+    price;
+    wireless;
+    ownedby;
+
+    constructor(id, brand, modelname) {
+        this.id = id;
+        this.brand = brand;
+        this.modelname = modelname;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    class User {
-        username;
-        password;
-        headphones;
-
-        constructor(username, password) {
-            this.username = username;
-            this.password = password;
-            this.headphones = [];
-        }
-
-        get username() {
-            return this.username;
-        }
-
-        get password() {
-            return this.password;
-        }
-
-        get headphones() {
-            return this.headphones;
-        }
-    }
-
-    class Headphone {
-        id;
-        brand;
-        modelname;
-        type;
-        impedance;
-        sensitivity;
-        weight;
-        driver;
-        price;
-        wireless;
-        ownedby;
-    
-        constructor(id, brand, modelname) {
-            this.id = id;
-            this.brand = brand;
-            this.modelname = modelname;
-        }
-    
-        set type(type) {
-            this.type=type;
-        }
-    
-        set impedance(impedance) {
-            this.impedance = impedance;
-        }
-    
-        set sensitivity(sensitivity) {
-            this.sensitivity = senstivity;
-        }
-    
-        set weight(weight) {
-            this.weight = weight;
-        }
-    
-        set driver(driver) {
-            this.driver = driver;
-        }
-    
-        set price(price) {
-            this.price = price;
-        }
-    
-        set wireless(wireless) {
-            this.wireless = wireless;
-        }
-    
-        set ownedby(ownedby) {
-            this.ownedby = ownedby;
-        }
-    }
-
     const profile = getUser(localStorage.getItem('viewingProfile'))[0];
 
     const headphones = [];
@@ -95,16 +69,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#profile-heading h1').textContent = profile.username;
         document.getElementById('add-hp').addEventListener('click', openAddHPModal, false);
         document.getElementById('add-hp-close').addEventListener('click', closeAddHPModal, false);
+        document.getElementById('add-review').addEventListener('click', openReviewModal, false);
+        document.getElementById('add-review-close').addEventListener('click', closeReviewModal, false);
         document.getElementById('rm-hp').addEventListener('click', toggleRemove, false);
 
         if (user.username === profile.username) {
-            document.getElementById('hp-btn-container').classList.remove('full-hidden');
+            document.querySelector('#headphones-list .hp-btn-container').classList.remove('full-hidden');
         }
 
         function initHeadphones() {
             //load all headphones
             const hpResponse = loadHeadphones().then(hp => {
-                for (const prop of hp) {
+            for (const prop of hp) {
                     const thisHp = new Headphone(prop['id'], prop['brand'], prop['modelname']);
                     thisHp.type = prop['type'];
                     thisHp.impedance = prop['impedance'];
@@ -159,6 +135,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     rm_hp.classList.add('full-hidden');
                 }
             });
+
+            document.getElementById('owned-tab').addEventListener('click', function(){
+                if (!this.classList.contains('tab-selected')) {
+                    document.getElementById('headphones-list').classList.remove('full-hidden');
+                    document.getElementById('reviews-tab').classList.remove('tab-selected');
+                    document.getElementById('reviews-container').classList.add('full-hidden');
+                    document.querySelector('#headphones-list .hp-btn-container').classList.remove('full-hidden');
+                    document.querySelector('#reviews-container .hp-btn-container').classList.add('full-hidden');
+                    this.classList.add('tab-selected');
+                }
+            });
+
+            document.getElementById('reviews-tab').addEventListener('click', function() {
+                if (!this.classList.contains('tab-selected')) {
+                    document.getElementById('reviews-container').classList.remove('full-hidden');
+                    document.getElementById('owned-tab').classList.remove('tab-selected');
+                    document.getElementById('headphones-list').classList.add('full-hidden');
+                    document.querySelector('#reviews-container .hp-btn-container').classList.remove('full-hidden');
+                    document.querySelector('#headphones-list .hp-btn-container').classList.add('full-hidden');
+                    this.classList.add('tab-selected');
+                }
+            });
         }
     }
     
@@ -209,11 +207,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeAddHPModal() {
         const addHPModal = document.getElementById('add-hp-modal');
         addHPModal.classList.add('full-hidden');
+        document.querySelector('.overlay').classList.add('full-hidden');
     }
 
     function openAddHPModal() {
         const addHPModal = document.getElementById('add-hp-modal');
         addHPModal.classList.remove('full-hidden');
+        document.querySelector('.overlay').classList.remove('full-hidden');
+    }
+
+    function closeReviewModal() {
+        const addReviewModal = document.getElementById('add-review-modal');
+        addReviewModal.classList.add('full-hidden');
+        document.querySelector('.overlay').classList.add('full-hidden');
+    }
+
+    function openReviewModal() {
+        const addReviewModal = document.getElementById('add-review-modal');
+        addReviewModal.classList.remove('full-hidden');
+        document.querySelector('.overlay').classList.remove('full-hidden');
     }
 
     function toggleRemove() {

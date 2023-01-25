@@ -548,17 +548,77 @@ main {
     border-bottom: 1px solid black;
 }
 
-#hp-btn-container {
+.hp-btn-container {
     text-align: right;
     padding: 1em 2em 0 0;
 }
 
-#hp-btn-container button {
+.hp-btn-container button {
     background-color: orange;
     color: white;
     padding: 0.5em 1em 0.5em 1em;
     border: 0;
 }
+
+#add-review-modal {
+    height: 80vh;
+    border: 1px solid black;
+    padding: 0 2em 1em 2em;
+    width: 50vw;
+}
+
+#add-review-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#add-review-container label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+}
+
+#add-review-container select {
+    padding: 0.5em;
+    margin-bottom: 3em;
+}
+
+#add-review-container input {
+    padding: 0.5em;
+    margin-bottom: 1.5em;
+}
+
+#add-review-container textarea {
+    padding: 1em;
+}
+
+#five-stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 0.5em;
+    margin-bottom: 2em;
+}
+
+.star {
+    color: grey;
+}
+
+.star-rating:checked ~ .star {
+    color: orange;
+}
+
+#add-review-container input[name="star"] {
+    display: none;
+}
+
+#save-review {
+    width: 100px;
+    padding: 0.5em 2em;
+    border: 0;
+    background-color: orange;
+    color: white;
+    margin: 2em auto 0 auto;
 
 /* footer */
 footer {

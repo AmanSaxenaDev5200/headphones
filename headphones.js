@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const overlay = document.querySelector('.overlay');
         if (modal.classList.contains('hidden')) {
             modal.classList.remove('hidden');
-            overlay.classList.remove('hidden');
+            overlay.classList.remove('full-hidden');
         }
 
         if (modal.ariaHidden) {
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const overlay = document.querySelector('.overlay');
         modal.classList.add('hidden');
         modal.ariaHidden = true;
-        overlay.classList.add('hidden');
+        overlay.classList.add('full-hidden');
         createUser.classList.add('hidden');
         createBtn.textContent = 'Sign Up';
     }
