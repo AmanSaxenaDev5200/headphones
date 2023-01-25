@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#profile-heading h1').textContent = profile.username;
         document.getElementById('add-hp').addEventListener('click', openAddHPModal, false);
         document.getElementById('add-hp-close').addEventListener('click', closeAddHPModal, false);
-        document.getElementById('rm-hp').addEventListener('click', showRemove, false);
+        document.getElementById('rm-hp').addEventListener('click', toggleRemove, false);
 
         if (user.username === profile.username) {
             document.getElementById('hp-btn-container').classList.remove('full-hidden');
@@ -152,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
             
                     hp_ul.classList.add('width');
+                    hp_ul.id = 'profile-list';
                     hp_list.appendChild(hp_ul);
                 } else {
                     no_hp.classList.remove('full-hidden');
@@ -169,10 +170,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createHPListItem(hp) {
         const hp_a = document.createElement('a');
+        const hp_div = document.createElement('div');
         const hp_li = document.createElement('li');
         const hp_h3 = document.createElement('h3');
         const hp_span = document.createElement('span');
         const hp_img = document.createElement('img');
+        const i_ele = document.createElement('i');
         hp_h3.textContent = hp.brand + " " + hp.modelname;
         let wireless = (hp.wireless === 'true') ? 'Wireless' : 'Wired';
         hp_span.textContent = hp.type + " " + wireless;
@@ -182,11 +185,20 @@ document.addEventListener('DOMContentLoaded', function() {
         hp_li.appendChild(hp_img);
         hp_li.appendChild(hp_h3);
         hp_li.appendChild(hp_span);
+
+        i_ele.classList.add('fa-regular');
+        i_ele.classList.add('fa-circle-xmark');
+        i_ele.classList.add('fa-lg');
+        i_ele.classList.add('full-hidden');
+        i_ele.addEventListener('click', removeHeadphone, false);
+
         hp_a.href = './headphone.html';
-        hp_a.id ='headphone-' + hp.id;
+        hp_a.setAttribute('data-hp-id', hp.id);
         hp_a.addEventListener('click', setHeadphonePage, false);
         hp_a.appendChild(hp_li);
-        return hp_a;
+        hp_div.appendChild(hp_a)
+        hp_div.appendChild(i_ele);
+        return hp_div;
     }
 
     function setHeadphonePage() {
@@ -204,8 +216,16 @@ document.addEventListener('DOMContentLoaded', function() {
         addHPModal.classList.remove('full-hidden');
     }
 
-    function showRemove() {
-
+    function toggleRemove() {
+        const icon = [];
+        if (this.classList.contains('rm-on')) {
+            location.reload();
+        } else {
+            this.classList.add('rm-on');
+            this.textContent='Save';
+            icons = document.querySelectorAll('#profile-list i');
+            icons.forEach(element => element.classList.remove('full-hidden'));
+        }
     }
 
     //load headphone model names to add-hp modal
@@ -278,6 +298,26 @@ document.addEventListener('DOMContentLoaded', function() {
         allUsers[userIndex] = user;
         localStorage.setItem('users', JSON.stringify(allUsers));
         location.reload();
+    }
+
+    function removeHeadphone() {
+        const parent = this.parentNode;
+        const sibling = this.previousSibling;
+        const hpID = Number(sibling.getAttribute('data-hp-id'));
+        console.log(hpID);
+        const hpIndex = userHP.findIndex(element => element === hpID);
+        const allUsers = JSON.parse(localStorage.getItem('users'));
+
+        console.log(hpIndex);
+        userHP.splice(hpIndex, 1);
+        console.log(userHP);
+        user.headphones = userHP;
+
+        const userIndex = allUsers.findIndex(element => element.username === user.username);
+        allUsers[userIndex] = user;
+        localStorage.setItem('users', JSON.stringify(allUsers));
+
+        parent.classList.add('full-hidden');
     }
 
     function getUser(username) {

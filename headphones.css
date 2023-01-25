@@ -441,6 +441,20 @@ main {
     padding: 3em;
 }
 
+#profile-list div {
+    position: relative;
+    flex-grow: 1;
+    flex-basis: 200px;
+}
+
+#profile-list i {
+    color: orange;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+
 #add-hp-modal {
     height: 80vh;
     border: 1px solid black;
