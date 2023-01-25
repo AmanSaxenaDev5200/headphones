@@ -40,6 +40,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('#spec-weight p').textContent = hp.weight;
 
             }
+
+            document.getElementById('specs-tab').addEventListener('click', function(){
+                if (!this.classList.contains('tab-selected')) {
+                    document.getElementById('specs-container').classList.remove('full-hidden');
+                    document.getElementById('reviews-tab').classList.remove('tab-selected');
+                    document.getElementById('reviews-container').classList.add('full-hidden');
+                    this.classList.add('tab-selected');
+                }
+            });
+
+            document.getElementById('reviews-tab').addEventListener('click', function() {
+                if (!this.classList.contains('tab-selected')) {
+                    document.getElementById('reviews-container').classList.remove('full-hidden');
+                    document.getElementById('specs-tab').classList.remove('tab-selected');
+                    document.getElementById('specs-container').classList.add('full-hidden');
+                    this.classList.add('tab-selected');
+                }
+            });
         });
     }
 

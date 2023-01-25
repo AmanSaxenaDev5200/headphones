@@ -391,13 +391,16 @@ main {
 }
 
 .tab-options li:hover {
-    color: white;
-    background-color: orange;
+    color: orange;
     cursor: pointer;
 }
 
 .tab-container {
     background-color: white;
+}
+
+.tab-selected {
+    color: orange;
 }
 
 #specs-container {
