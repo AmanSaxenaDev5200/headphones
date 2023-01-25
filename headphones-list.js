@@ -1,5 +1,25 @@
 'use-strict'
 
+class Headphone {
+    id;
+    brand;
+    modelname;
+    type;
+    impedance;
+    sensitivity;
+    weight;
+    driver;
+    price;
+    wireless;
+    ownedby;
+
+    constructor(id, brand, modelname) {
+        this.id = id;
+        this.brand = brand;
+        this.modelname = modelname;
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const headphones = [];
     const hp_brands = [];
@@ -113,6 +133,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let filteredHP = [...headphones];
         filteredHP = filteredHP.filter(element => {
+            return (element.brand === sel_brand.value || !sel_brand.value) 
+            && (element.type === sel_type.value || !sel_type.value)
+            && (element.driver === sel_driver.value || !sel_driver.value)
+            && (element.wireless === sel_wireless.value || !sel_wireless.value);
+        });
+        /*filteredHP = filteredHP.filter(element => {
             return element.brand === sel_brand.value || sel_brand.value === '';
         });
         filteredHP = filteredHP.filter(element => {
@@ -123,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         filteredHP = filteredHP.filter(element => {
             return element.wireless === sel_wireless.value || sel_wireless.value === '';
-        });
+        });*/
 
         let listHP = [...headphones];
 
@@ -170,58 +196,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function setHeadphonePage() {
         const id = Number(this.getAttribute('data-hp-id'));
         localStorage.setItem('currenthp', id);
-    }
-    
-    class Headphone {
-        id;
-        brand;
-        modelname;
-        type;
-        impedance;
-        sensitivity;
-        weight;
-        driver;
-        price;
-        wireless;
-        ownedby;
-    
-        constructor(id, brand, modelname) {
-            this.id = id;
-            this.brand = brand;
-            this.modelname = modelname;
-        }
-    
-        set type(type) {
-            this.type=type;
-        }
-    
-        set impedance(impedance) {
-            this.impedance = impedance;
-        }
-    
-        set sensitivity(sensitivity) {
-            this.sensitivity = senstivity;
-        }
-    
-        set weight(weight) {
-            this.weight = weight;
-        }
-    
-        set driver(driver) {
-            this.driver = driver;
-        }
-    
-        set price(price) {
-            this.price = price;
-        }
-    
-        set wireless(wireless) {
-            this.wireless = wireless;
-        }
-    
-        set ownedby(ownedby) {
-            this.ownedby = ownedby;
-        }
     }
 
     initHeadphones();
