@@ -102,20 +102,20 @@
                 <h1 id="profile-no-reviews" class="full-hidden">No Reviews in Collection</h1>
                 <form id="add-review-modal" class="modal full-hidden" aria-modal="true" aria-hidden="true">
                     <div class="close">
-                        <button id="add-review-close" class="close-modal" type="button">X</button>
+                        <button type="button" id="add-review-close" class="close-modal" type="button">X</button>
                     </div>
                     <div id="add-review-container">
                         <label>Select Headphone to Review</label>
-                        <select>
+                        <select id="hp-review-list">
 
                         </select>
 
                         <label>Title</label>
-                        <input type="text">
+                        <input id="review-title" type="text" required>
                         
                         <label>Rating</label>
                         <div id="five-stars">
-                            <input class="star-rating" type="radio" id="star-5" name="star" value="5">
+                            <input class="star-rating" type="radio" id="star-5" name="star" value="5" required>
                             <label class="star" for="star-5"><i class="fa-solid fa-star fa-lg"></i></label>
 
                             <input class="star-rating" type="radio" id="star-4" name="star" value="4">
@@ -132,10 +132,9 @@
                         </div>
 
                         <label>Review</label>
-                        <textarea rows="10" cols="20"></textarea>
+                        <textarea id="review-content" rows="10" cols="20" required></textarea>
 
-                        <button id="save-review">Save</button>
-
+                        <button type="button" id="save-review">Save</button>
                     </div>
                 </form>
                 <div class="width">

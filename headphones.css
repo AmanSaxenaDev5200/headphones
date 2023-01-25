@@ -563,7 +563,7 @@ main {
 #add-review-modal {
     height: 80vh;
     border: 1px solid black;
-    padding: 0 2em 1em 2em;
+    padding: 0 2em 2em 2em;
     width: 50vw;
 }
 
@@ -598,10 +598,13 @@ main {
     justify-content: flex-end;
     gap: 0.5em;
     margin-bottom: 2em;
+    padding: 0.5em;
+    cursor: pointer;
 }
 
 .star {
     color: grey;
+    cursor: pointer;
 }
 
 .star-rating:checked ~ .star {
@@ -619,6 +622,7 @@ main {
     background-color: orange;
     color: white;
     margin: 2em auto 0 auto;
+}
 
 /* footer */
 footer {
