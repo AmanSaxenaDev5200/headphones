@@ -6,9 +6,72 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MyHeadphones</title>
         <link rel="stylesheet" href="./headphones.css">
+        <script src="https://kit.fontawesome.com/70f047892b.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <p>Hello world!</p>
+        <header>
+            <nav class="width">
+                <div class="left">
+                    <a id="logo" href="./index.html"><p>MyHeadphones</p></a>
+                    <ul class="nav-links">
+                        <a href="./headphones-list.html"><li>Headphones</li></a>
+                        <a href="./about.html"><li>About Us</li></a>
+                    </ul>
+                </div>
+                <div class="right">
+                    <button class="signup-btn" id="signup">Sign In / Sign Up</button>
+                </div>
+
+                <div id="user" class="right full-hidden">
+                    <button>
+                        <i class="fa-regular fa-user fa-xl"></i>
+                        <p>Welcome, mooch</p>
+                    </button>
+                </div>
+                <div id="sub-menu" class="hidden">
+                    <button>Go to Profile</button>
+                    <p id="sign-out"><i class="fa-solid fa-arrow-right-from-bracket"></i>Sign Out</p>
+                </div>
+                <form id="login-modal" class="modal hidden" aria-modal="true" aria-hidden="true">
+                    <div class="close">
+                        <button id="login-close" class="close-modal" type="button">X</button>
+                    </div>
+                    <div class="login-container">
+                        <div class="left">
+                            <h2>New User?</h2>
+                            <p>Join now to catalog your headphones, share with your friends, and be part of a vibrant community!</p>
+                            <div class="create-user hidden">
+                                <label>Username</label><p><input name="create-username" type="text" size="20" required></p>
+                                <label>Password</label><p><input name="create-password" type="password" size="20" required></p>
+                            </div>
+                            <button id="create-btn" type="button">Sign Up</button>
+                        </div>
+                        <div class="right">
+                            <h2>Returning User?</h2>
+                            <label>Username</label><p><input type="text" name="username" size="20"></p>
+                            <label>Password</label><p><input type="password" name="password" size="20"></p>
+                            <button id="login-btn" type="button">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="overlay hidden">
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="hp-heading width">
+                <h1>About Us</h1>
+                <img class="hp-main" src="" width="300px" height="300px">
+                <h2>Daniel Yoon</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+            </section>
+        </main>
+        <footer>
+            <p>placeholder text</p>
+        </footer>
     </body>
 
     <script type="text/javascript" src="./headphones.js"></script>
