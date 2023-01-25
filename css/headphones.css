@@ -195,14 +195,14 @@ nav .left {
     margin-bottom: 1em;
 }
 
-.login-container p {
+.login-container div {
     margin-bottom: 1em;
     line-height: 20px;
 }
 
 .login-container button {
     color: white;
-    margin-top: 2em;
+    margin-top: 1em;
     max-width: 150px;
     padding: 1em 0.5em;
     font-weight: bold;
@@ -217,6 +217,12 @@ nav .left {
     color: #161412;
     background-color: transparent;
     border: 1px solid grey;
+}
+
+.login-container .error {
+    color: red;
+    font-size: 12px;
+    display: block;
 }
 
 .overlay {

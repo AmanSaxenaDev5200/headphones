@@ -41,21 +41,47 @@ function setupUser(btn, inputFields) {
         btn.textContent = 'Create New Account';
         btn.classList.add('set')
     } else if (btn.classList.contains('set')) {
-        const usr = document.getElementById('login-modal').elements['create-username'].value;
-        const pw = document.getElementById('login-modal').elements['create-password'].value;
-        handleCreate(usr, pw);
+        const usr = document.getElementById('login-modal').elements['create-username'];
+        const pw = document.getElementById('login-modal').elements['create-password'];
+        const usr_error = document.getElementById('usr-error');
+        const pw_error = document.getElementById('pw-error');
+
+        usr_error.textContent = '';
+        pw_error.textContent = '';
+
+        if (usr.validity.valid && pw.validity.valid) {
+            handleCreate(usr.value, pw.value);
+        } else if (!usr.validity.valid) {
+            usr_error.textContent = 'Please enter a username.';
+        } else if (!pw.validity.valid) {
+            pw_error.textContent = 'Please enter a password.';
+        }
     }
 }
 
 function logUserIn() {
-    const usr = document.getElementById('login-modal').elements['username'].value;
-    const pw = document.getElementById('login-modal').elements['password'].value;
-    handleLogin(usr, pw);
+    const usr = document.getElementById('login-modal').elements['username'];
+    const pw = document.getElementById('login-modal').elements['password'];
+
+    const usr_error = document.getElementById('log-usr-error');
+    const pw_error = document.getElementById('log-pw-error');
+
+    usr_error.textContent = '';
+    pw_error.textContent = '';
+
+    if (usr.validity.valid && pw.validity.valid) {
+        handleLogin(usr.value, pw.value);
+    } else if (!usr.validity.valid) {
+        usr_error.textContent = 'Please enter a username.';
+    } else if (!pw.validity.valid) {
+        pw_error.textContent = 'Please enter a password.';
+    } 
 }
 
 /* user functions */
 function handleCreate(username, password) {
     const user = new User(username, password);
+    const usr_error = document.getElementById('usr-error');
     if (checkAnyUsers()) {
         const users = [];
         users.push(user);
@@ -73,7 +99,7 @@ function handleCreate(username, password) {
             handleLogin(username, password);
             location.reload();
         } else {
-            console.log('User already exists');
+            usr_error.textContent = 'User already exists';
         }
     }
 }
@@ -81,8 +107,11 @@ function handleCreate(username, password) {
 function handleLogin(username, password) {
     if (!isLoggedIn()) {
         const user = getUser(username);
+        const usr_error = document.getElementById('log-usr-error');
+        const pw_error = document.getElementById('log-pw-error');
         if(user === null) {
             console.log('There are no registered users yet.');
+            usr_error.textContent = 'User doesn\'t exist.';
         } else {
             if (user.length > 0) {
                 const currentUser = user[0];
@@ -92,10 +121,10 @@ function handleLogin(username, password) {
                     localStorage.setItem('loggedin', JSON.stringify(true));
                     location.reload();
                 } else {
-                    console.log('Wrong password, try again!')
+                    pw_error.textContent = 'Wrong password, try again!';
                 }
             } else {
-                console.log('User doesn\'t exist.')
+                usr_error.textContent = 'User doesn\'t exist.';
             }
         }
     }

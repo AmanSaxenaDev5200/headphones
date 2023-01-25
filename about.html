@@ -44,15 +44,31 @@
                             <h2>New User?</h2>
                             <p>Join now to catalog your headphones, share with your friends, and be part of a vibrant community!</p>
                             <div class="create-user hidden">
-                                <label>Username</label><p><input name="create-username" type="text" size="20" required></p>
-                                <label>Password</label><p><input name="create-password" type="password" size="20" required></p>
+                                <label>Username</label>
+                                <div>
+                                    <input name="create-username" type="text" maxLength="30" required>
+                                    <span id="usr-error" class="error" aria-live="polite"></span>
+                                </div>
+                                <label>Password</label>
+                                <div>
+                                    <input name="create-password" type="password" maxLength="30" required>
+                                    <span id="pw-error" class="error" aria-live="polite"></span>
+                                </div>
                             </div>
                             <button id="create-btn" type="button">Sign Up</button>
                         </div>
                         <div class="right">
                             <h2>Returning User?</h2>
-                            <label>Username</label><p><input type="text" name="username" size="20"></p>
-                            <label>Password</label><p><input type="password" name="password" size="20"></p>
+                            <label>Username</label>
+                            <div>
+                                <input type="text" name="username" maxLength="30" required>
+                                <span id="log-usr-error" class="error" aria-live="polite"></span>
+                            </div>
+                            <label>Password</label>
+                            <div>
+                                <input type="password" name="password" maxLength="30" required>
+                                <span id="log-pw-error" class="error" aria-live="polite"></span>
+                            </div>
                             <button id="login-btn" type="button">Sign In</button>
                         </div>
                     </div>
