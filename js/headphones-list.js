@@ -111,7 +111,10 @@ document.addEventListener('DOMContentLoaded', function() {
          
     function sortList(sortMethod) {
         let filteredHP = filterList();
-        const reviews = JSON.parse(localStorage.getItem('reviews'));
+        let reviews = [];
+        if (localStorage.getItem('reviews') !== null) {
+            reviews = JSON.parse(localStorage.getItem('reviews'));
+        }
         let tempReviews = [];
         let hpNumReviews = [];
         let sortedHP = [];
