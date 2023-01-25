@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     'weight': prop['weight'],
                     'driver': prop['driver-type'],
                     'price': prop['price'],
-                    'wireless': prop['wireless']
+                    'wireless': prop['wireless'],
+                    'img': prop['img']
                 });
                 headphones.push(thisHp);
             }
@@ -31,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.querySelector('.hp-heading').classList.add('full-hidden');
             } else {
                 document.querySelector('title').textContent = currentHP.brand + " " + currentHP.modelname + " - MyHeadphones";
+                document.querySelector('.hp-heading .hp-main').src = currentHP.img;
                 document.querySelector('.hp-heading h1').textContent = currentHP.brand + " " + currentHP.modelname;
 
                 document.querySelector('#spec-brand p').textContent = currentHP.brand;
@@ -71,6 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (reviews === null) {
             document.getElementById('no-reviews').classList.remove('full-hidden');
         } else {
+            if (document.querySelector('#reviews ul')) {
+                reviews_container.removeChild(document.querySelector('#reviews ul'));
+            }
             reviews = JSON.parse(reviews);
             reviews = reviews.filter(element => Number.parseInt(element.headphone_id) === hpID);
             if (reviews.length > 0) {

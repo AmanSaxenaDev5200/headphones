@@ -357,21 +357,49 @@ nav .left {
 }
 
 #headphones-list ul {
-    color: #161412;
     display: grid;
     grid-gap: 5em;
-    grid-template-columns: repeat(auto-fill, 150px);
+    grid-template-columns: repeat(auto-fill, 180px);
     justify-content: space-between;
+    font-size: 14px;
     text-align: center;
     padding: 3em 5em;
 }
 
 #headphones-list ul a {
+    color: #1B2937;
     flex: 1;
 }
 
+#headphones-list ul h3 {
+    color: #161412;
+    font-size: 16px;
+}
+
 #headphones-list img {
+    max-width: 150px;
+    max-height: 150px;
     margin-bottom: 1.5em;
+    border: 1px solid #EBEBEB;
+}
+
+.wire-info {
+    font-style: italic;
+}
+
+.sub-info span {
+    color:#1B2937;
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-info span:first-child {
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.sub-info span:last-child{
+    color:#B48E31;
 }
 
 #hp-no-exist {
@@ -389,6 +417,8 @@ nav .left {
 
 .hp-main {
     margin-bottom: 3em;
+    max-width: 300px;
+    max-height: 300px;
 }
 
 .hp-heading h1 {

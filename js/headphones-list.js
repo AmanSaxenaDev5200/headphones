@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     'weight': prop['weight'],
                     'driver': prop['driver-type'],
                     'price': prop['price'],
-                    'wireless': prop['wireless']
+                    'wireless': prop['wireless'],
+                    'img': prop['img']
                 });
                 headphones.push(thisHp);
             }
