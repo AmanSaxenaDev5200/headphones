@@ -382,7 +382,7 @@ main {
     color: black;
     display: flex;
     justify-content: flex-start;
-    padding: 1em 2em;
+    padding: 0.5em 0 0.5em 1em;
     border-bottom: 2px solid #eeeeee;
 }
 
@@ -438,8 +438,9 @@ main {
 }
 
 #reviews-container li {
-    width: 80%;
-    padding: 1em 2em 2em 2em;
+    width: 90%;
+    padding: 1em 2em 4em 2em;
+    position: relative;
 }
 
 .review-info {
@@ -458,12 +459,6 @@ main {
     margin-top: 1.5em;
 }
 
-#no-reviews {
-    color: black;
-    padding: 3em;
-    text-align: center;
-}
-
 .star-point {
     color: orange;
 }
@@ -480,7 +475,7 @@ main {
 }
 
 /* profile */
-#profile-no-hp {
+.does-not-exist {
     color: black;
     text-align: center;
     padding: 3em;
@@ -559,8 +554,9 @@ main {
 }
 
 .hp-btn-container {
-    text-align: right;
-    padding: 1em 2em 0 0;
+    text-align: left;
+    padding: 2em 2em 0 0;
+    margin-left: 3em;
 }
 
 .hp-btn-container button {
@@ -625,13 +621,26 @@ main {
     display: none;
 }
 
-#save-review {
+.review-modal-button {
     width: 100px;
     padding: 0.5em 2em;
     border: 0;
     background-color: orange;
     color: white;
     margin: 2em auto 0 auto;
+}
+
+#review-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.edit-mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: orange;
+    cursor: pointer;
 }
 
 /* footer */

@@ -110,49 +110,56 @@ document.addEventListener('DOMContentLoaded', function() {
         let reviews = localStorage.getItem('reviews');
         const hpID = Number.parseInt(localStorage.getItem('currenthp'));
         if (reviews === null) {
-
+            document.getElementById('no-reviews').classList.remove('full-hidden');
         } else {
             reviews = JSON.parse(reviews);
             reviews = reviews.filter(element => Number.parseInt(element.headphone_id) === hpID);
-            reviews = reviews.sort( (a,b) => {
-                return a.date == b.date ? 0 : (a.date > b.date ? 1 : -1);
-            });
-            const ul = document.createElement('ul');
-            for (const review of reviews) {
-                const li = document.createElement('li');
-                const h3 = document.createElement('h3');
-                h3.textContent = review.title;
-
-                const review_info_p = document.createElement('p');
-                const review_info = '<span>reviewed by <a href="./profile.html">' 
-                + review.username + '</a></span><span>' + review.date + '</span>';
-                review_info_p.innerHTML = review_info;
-                review_info_p.classList.add('review-info');
-
-                const review_content_p = document.createElement('p');
-                review_content_p.classList.add('review-content');
-                review_content_p.textContent = review.content;
-
-                const div = document.createElement('div');
-                for (let i = 1; i < 6; i++) {
-                    const star_ele = document.createElement('i');
-                    star_ele.classList.add('fa-solid');
-                    star_ele.classList.add('fa-star');
-                    if (i <= review.rating) {
-                        star_ele.classList.add('star-point');
-                    } else {
-                        star_ele.classList.add('star');
+            if (reviews.length > 0) {
+                document.getElementById('no-reviews').classList.add('full-hidden');
+                reviews = reviews.sort( (a,b) => {
+                    return a.date == b.date ? 0 : (a.date > b.date ? 1 : -1);
+                });
+                const ul = document.createElement('ul');
+                for (const review of reviews) {
+                    const li = document.createElement('li');
+                    li.setAttribute('data-review-id', review.id);
+    
+                    const h3 = document.createElement('h3');
+                    h3.textContent = review.title;
+    
+                    const review_info_p = document.createElement('p');
+                    const review_info = '<span>reviewed by <a href="./profile.html">' 
+                    + review.username + '</a></span><span>' + review.date + '</span>';
+                    review_info_p.innerHTML = review_info;
+                    review_info_p.classList.add('review-info');
+    
+                    const review_content_p = document.createElement('p');
+                    review_content_p.classList.add('review-content');
+                    review_content_p.textContent = review.content;
+    
+                    const div = document.createElement('div');
+                    for (let i = 1; i < 6; i++) {
+                        const star_ele = document.createElement('i');
+                        star_ele.classList.add('fa-solid');
+                        star_ele.classList.add('fa-star');
+                        if (i <= review.rating) {
+                            star_ele.classList.add('star-point');
+                        } else {
+                            star_ele.classList.add('star');
+                        }
+                        div.appendChild(star_ele);
                     }
-                    div.appendChild(star_ele);
+    
+                    li.appendChild(h3);
+                    li.appendChild(review_info_p);
+                    li.appendChild(div);
+                    li.appendChild(review_content_p);
+                    ul.appendChild(li);
                 }
-
-                li.appendChild(h3);
-                li.appendChild(review_info_p);
-                li.appendChild(div);
-                li.appendChild(review_content_p);
-                ul.appendChild(li);
-            }
-            reviews_container.appendChild(ul);
+                reviews_container.appendChild(ul);
+            } else {
+                document.getElementById('no-reviews').classList.remove('full-hidden');
+            }           
         }
     }
 });

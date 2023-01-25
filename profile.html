@@ -78,7 +78,7 @@
                     <button id="add-hp">Add Headphone</button>>
                     <button id="rm-hp">Remove Headphone</button>
                 </div>
-                <h1 id="profile-no-hp" class="full-hidden">No Headphones in Collection</h1>
+                <h1 id="profile-no-hp" class="does-not-exist full-hidden">No Headphones in Collection</h1>
                 <form id="add-hp-modal" class="modal full-hidden" aria-modal="true" aria-hidden="true">
                     <div class="close">
                         <button id="add-hp-close" class="close-modal" type="button">X</button>
@@ -96,10 +96,9 @@
 
             <section id="reviews-container" class="full-hidden">
                 <div class="hp-btn-container width full-hidden">
-                    <button id="add-review">Add Review</button>>
-                    <button id="rm-review">Edit Review</button>
+                    <button id="add-review">Add Review</button>
                 </div>
-                <h1 id="profile-no-reviews" class="full-hidden">No Reviews in Collection</h1>
+                <h1 id="profile-no-reviews" class="does-not-exist full-hidden">No Reviews in Collection</h1>
                 <form id="add-review-modal" class="modal full-hidden" aria-modal="true" aria-hidden="true">
                     <div class="close">
                         <button type="button" id="add-review-close" class="close-modal" type="button">X</button>
@@ -133,8 +132,10 @@
 
                         <label>Review</label>
                         <textarea id="review-content" rows="10" cols="20" required></textarea>
-
-                        <button type="button" id="save-review">Save</button>
+                        <div id="review-btn-container">
+                            <button type="button" id="save-review" class="review-modal-button">Save</button>
+                            <button type="button" id="del-review" class="review-modal-button full-hidden">Delete</button>
+                        </div>
                     </div>
                 </form>
                 <div id="reviews" class="width">
