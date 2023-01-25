@@ -156,6 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.querySelector('#reviews-container .hp-btn-container').classList.remove('full-hidden');
                     document.querySelector('#headphones-list .hp-btn-container').classList.add('full-hidden');
                     this.classList.add('tab-selected');
+                    populateReviews();
                 }
             });
         }
@@ -242,6 +243,57 @@ document.addEventListener('DOMContentLoaded', function() {
             option.textContent = hp_name;
             option.setAttribute('value', hpID);
             review_list.appendChild(option);
+        }
+    }
+
+    function populateReviews() {
+        const reviews_container = document.getElementById('reviews');
+        reviews_container.innerHTML = '';
+        let reviews = localStorage.getItem('reviews');
+        if (reviews === null) {
+
+        } else {
+            reviews = JSON.parse(reviews);
+            reviews = reviews.filter(element => element.username === profile.username);
+            reviews = reviews.sort( (a,b) => {
+                return a.date == b.date ? 0 : (a.date > b.date ? 1 : -1);
+            });
+            const ul = document.createElement('ul');
+            for (const review of reviews) {
+                const li = document.createElement('li');
+                const h3 = document.createElement('h3');
+                h3.textContent = review.title;
+
+                const review_info_p = document.createElement('p');
+                const review_info = '<span>reviewed by <a href="./profile.html">' 
+                + review.username + '</a></span><span>' + review.date + '</span>';
+                review_info_p.innerHTML = review_info;
+                review_info_p.classList.add('review-info');
+
+                const review_content_p = document.createElement('p');
+                review_content_p.classList.add('review-content');
+                review_content_p.textContent = review.content;
+
+                const div = document.createElement('div');
+                for (let i = 1; i < 6; i++) {
+                    const star_ele = document.createElement('i');
+                    star_ele.classList.add('fa-solid');
+                    star_ele.classList.add('fa-star');
+                    if (i <= review.rating) {
+                        star_ele.classList.add('star-point');
+                    } else {
+                        star_ele.classList.add('star');
+                    }
+                    div.appendChild(star_ele);
+                }
+
+                li.appendChild(h3);
+                li.appendChild(review_info_p);
+                li.appendChild(div);
+                li.appendChild(review_content_p);
+                ul.appendChild(li);
+            }
+            reviews_container.appendChild(ul);
         }
     }
 
@@ -411,8 +463,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
             localStorage.setItem('users', JSON.stringify(users));
             localStorage.setItem('test-active', 'true');
+
+            const test_review1 = new Review({
+                'username': 'bob',
+                'headphone_id': 8,
+                'title': 'A test review',
+                'rating': 4,
+                'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+                'date': '1/25/2023'
+            });
+            const test_review2 = new Review({
+                'username': 'bob',
+                'headphone_id': 6,
+                'title': 'A test review',
+                'rating': 3,
+                'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+                'date': '1/23/2023'
+            });
+            const test_review3 = new Review({
+                'username': 'jill',
+                'headphone_id': 8,
+                'title': 'A test review',
+                'rating': 2,
+                'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+                'date': '1/25/2020'
+            });
+            const test_review4 = new Review({
+                'username': 'smith',
+                'headphone_id': 8,
+                'title': 'A test review',
+                'rating': 5,
+                'content': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+                'date': '1/20/2023'
+            });
+
+            let reviews = [];
+            if (localStorage.getItem('reviews') !== null) {
+                reviews = JSON.parse(localStorage.getItem('reviews'));
+            }
+            reviews.push(test_review1);
+            reviews.push(test_review2);
+            reviews.push(test_review3);
+            reviews.push(test_review4);
+
+            localStorage.setItem('reviews', JSON.stringify(reviews));
         } else {
-            console.log('Test users already populated.');
+            console.log('Test data already populated.');
         }
     }
 

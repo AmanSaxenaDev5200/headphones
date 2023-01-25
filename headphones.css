@@ -442,7 +442,7 @@ main {
     padding: 1em 2em 2em 2em;
 }
 
-#reviews-container ul span {
+.review-info {
     font-style: italic;
     display: flex;
     justify-content: space-between;
@@ -454,8 +454,12 @@ main {
     color: orange;
 }
 
-#reviews-container ul p {
+.review-content {
     margin-top: 1.5em;
+}
+
+.star-point {
+    color: orange;
 }
 
 #hp-error {
