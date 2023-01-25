@@ -151,7 +151,7 @@ nav .left {
 .close button {
     background-color: transparent;
     font-size: 24px;
-    padding: 1em 0;
+    padding: 0.5em 0;
     border: 0;
 }
 
@@ -363,7 +363,7 @@ nav .left {
     grid-template-columns: repeat(auto-fill, 150px);
     justify-content: space-between;
     text-align: center;
-    padding: 5em;
+    padding: 3em 5em;
 }
 
 #headphones-list ul a {
@@ -582,6 +582,7 @@ nav .left {
     text-align: right;
     padding-top: 1em;
     margin-left: 3em;
+    margin-right: 1em;
 }
 
 .hp-btn-container button {
@@ -616,12 +617,10 @@ nav .left {
 
 #add-review-container select {
     padding: 0.5em;
-    margin-bottom: 3em;
 }
 
 #add-review-container input {
     padding: 0.5em;
-    margin-bottom: 1.5em;
 }
 
 #add-review-container textarea {
@@ -633,7 +632,6 @@ nav .left {
     flex-direction: row-reverse;
     justify-content: flex-end;
     gap: 0.5em;
-    margin-bottom: 2em;
     padding: 0.5em;
     cursor: pointer;
 }
@@ -671,6 +669,14 @@ nav .left {
     left: 0;
     color: #E6AF2E;
     cursor: pointer;
+}
+
+
+#add-review-container .error {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 1em;
+    padding-top: 0.5em;
 }
 
 /* about page */

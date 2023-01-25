@@ -3,7 +3,7 @@
 import Headphone, {loadHeadphones, createHPListItem} from './headphone.js';
 import User,{checkAnyUsers, getUser} from './user.js';
 import Review from './review.js';
-import {openModal, closeModal} from './login.js';
+import {openModal, closeModal, checkValid} from './login.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const params = (new URL(document.location)).searchParams;
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const review_hp = headphones.find(element => element.id === Number.parseInt(editing_review.headphone_id));
 
             default_opt.textContent = review_hp.brand + " " + review_hp.modelname;
-            default_opt.setAttribute('value', review_hp.id);
+            default_opt.value = review_hp.id;
             review_list.appendChild(default_opt);
 
             const rating_id = "star-" + Number.parseInt(editing_review.rating);
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const review_form = document.getElementById('add-review-modal');
             review_form.reset();
             default_opt.textContent = '-- Select a headphone to review -- ';
-            default_opt.setAttribute('value', '');
+            default_opt.value = '';
             review_list.appendChild(default_opt);
             for (const hpID of hp_can_review) {
                 const selected_hp = headphones.find( element => element.id === hpID);
@@ -325,36 +325,56 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function saveReview() {
-        const hpID = document.getElementById('hp-review-list').value;
         const username = user.username;
-        const title = document.getElementById('review-title').value;
-        const rating = document.querySelector('.star-rating:checked').value;
-        const content = document.getElementById('review-content').value;
-        const review_date = new Date().toLocaleDateString('en-US');
-        let reviews = [];
-        const review = new Review({
-            "username": username,
-            'headphone_id': hpID,
-            "title": title,
-            "rating": rating,
-            "content": content,
-            "date": review_date
-        });
+        const hpID = document.getElementById('hp-review-list');
+        const title = document.getElementById('review-title');
+        const rating = document.querySelector('.star-rating:checked');
+        const content = document.getElementById('review-content');
 
-        if (localStorage.getItem('reviews') !== null) {
-            reviews = JSON.parse(localStorage.getItem('reviews'));
-        }
+        const hp_err = document.getElementById('hp-err');
+        const title_err = document.getElementById('title-err');
+        const rating_err = document.getElementById('rating-err');
+        const content_err = document.getElementById('content-err');
 
-        const og_review = reviews.find(element => element.review_id === review.review_id);
-        if (og_review === undefined) {
-            reviews.push(review);
-        } else {
-            const review_index = reviews.indexOf(og_review);
-            reviews.splice(review_index, 1);
-            reviews.push(review);
+        const valid1 = checkValid(hpID, hp_err, 'Please select a headphone.');
+        const valid2 = checkValid(title, title_err, 'Please enter a title.');
+        const valid3 = (() => {
+            if (rating === null) {
+                rating_err.textContent = 'Please select a rating.';
+            } else {
+                rating_err.textContent = '';
+            }
+            return rating !== null;
+        })();
+        const valid4 = checkValid(content, content_err, 'Please enter your review.');
+
+        if (valid1 && valid2 && valid3 && valid4) {
+            const review_date = new Date().toLocaleDateString('en-US');
+            let reviews = [];
+            const review = new Review({
+                "username": username,
+                'headphone_id': hpID.value,
+                "title": title.value,
+                "rating": rating.value,
+                "content": content.value,
+                "date": review_date
+            });
+    
+            if (localStorage.getItem('reviews') !== null) {
+                reviews = JSON.parse(localStorage.getItem('reviews'));
+            }
+    
+            const og_review = reviews.find(element => element.review_id === review.review_id);
+            if (og_review === undefined) {
+                reviews.push(review);
+            } else {
+                const review_index = reviews.indexOf(og_review);
+                reviews.splice(review_index, 1);
+                reviews.push(review);
+            }
+            localStorage.setItem('reviews', JSON.stringify(reviews));
+            location.reload();
         }
-        localStorage.setItem('reviews', JSON.stringify(reviews));
-        location.reload();
     }
 
     function deleteReview() {

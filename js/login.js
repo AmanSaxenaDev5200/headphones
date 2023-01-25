@@ -46,15 +46,11 @@ function setupUser(btn, inputFields) {
         const usr_error = document.getElementById('usr-error');
         const pw_error = document.getElementById('pw-error');
 
-        usr_error.textContent = '';
-        pw_error.textContent = '';
-
-        if (usr.validity.valid && pw.validity.valid) {
+        const usr_valid = checkValid(usr, usr_error, 'Please enter a username.');
+        const pw_valid = checkValid(pw, pw_error, 'Please enter a password.');
+    
+        if (usr_valid && pw_valid) {
             handleCreate(usr.value, pw.value);
-        } else if (!usr.validity.valid) {
-            usr_error.textContent = 'Please enter a username.';
-        } else if (!pw.validity.valid) {
-            pw_error.textContent = 'Please enter a password.';
         }
     }
 }
@@ -66,16 +62,12 @@ function logUserIn() {
     const usr_error = document.getElementById('log-usr-error');
     const pw_error = document.getElementById('log-pw-error');
 
-    usr_error.textContent = '';
-    pw_error.textContent = '';
+    const usr_valid = checkValid(usr, usr_error, 'Please enter a username.');
+    const pw_valid = checkValid(pw, pw_error, 'Please enter a password.');
 
-    if (usr.validity.valid && pw.validity.valid) {
+    if (usr_valid && pw_valid) {
         handleLogin(usr.value, pw.value);
-    } else if (!usr.validity.valid) {
-        usr_error.textContent = 'Please enter a username.';
-    } else if (!pw.validity.valid) {
-        pw_error.textContent = 'Please enter a password.';
-    } 
+    }
 }
 
 /* user functions */
@@ -185,4 +177,13 @@ function logOut() {
     localStorage.removeItem('currentuser');
     localStorage.removeItem('loggedin');
     location.reload();
+}
+
+export function checkValid(valid_ele, err_ele, err_mssg) {
+    if (!valid_ele.validity.valid) {
+        err_ele.textContent = err_mssg;
+    } else {
+        err_ele.textContent = '';
+    }
+    return valid_ele.validity.valid;
 }

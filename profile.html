@@ -129,12 +129,13 @@
                     </div>
                     <div id="add-review-container">
                         <label>Select Headphone to Review</label>
-                        <select id="hp-review-list">
-
+                        <select id="hp-review-list" required>
                         </select>
+                        <span id="hp-err" class="error" aria-live="polite"></span>
 
                         <label>Title</label>
-                        <input id="review-title" type="text" required>
+                        <input id="review-title" type="text" maxLength="80" required>
+                        <span id="title-err" class="error" aria-live="polite"></span>
                         
                         <label>Rating</label>
                         <div id="five-stars">
@@ -153,9 +154,12 @@
                             <input class="star-rating" type="radio" id="star-1" name="star" value="1">
                             <label class="star" for="star-1"><i class="fa-solid fa-star fa-lg"></i></label>
                         </div>
+                        <span id="rating-err" class="error" aria-live="polite"></span>
 
                         <label>Review</label>
-                        <textarea id="review-content" rows="10" cols="20" required></textarea>
+                        <textarea id="review-content" rows="10" cols="20" maxLength="500" required></textarea>
+                        <span id="content-err" class="error" aria-live="polite"></span>
+
                         <div id="review-btn-container">
                             <button type="button" id="save-review" class="review-modal-button">Save</button>
                             <button type="button" id="del-review" class="review-modal-button full-hidden">Delete</button>
