@@ -116,7 +116,8 @@ nav .left {
     right: 0;
     margin-right: 1.5em;
     padding: 1em 1em 1.5em 1em;
-    transition: height 0.2s linear;
+    height: 100%;
+    transition: all 0.1s ease-in-out;
 }
 
 #sub-menu button {
@@ -248,8 +249,8 @@ nav .left {
 }
 
 .hidden {
-    visibility: hidden;
-    height: 0px;
+    visibility: hidden !important;
+    height: 0 !important;
 }
 
 .full-hidden {
@@ -262,19 +263,21 @@ nav .left {
     padding: 12em 5em 12em 5em;
 }
 
-.hero-text {
+#hero-text {
     display: flex;
     flex-direction: column;
     max-width: 500px;
     margin-left: 5em;
+    animation-name: slideIn;
+    animation-duration: 1s;
 }
 
-.hero-text h1 {
+#hero-text h1 {
     color:#FFFFFF;
     margin-bottom: 0.5em;
 }
 
-.hero-text p {
+#hero-text p {
     margin-bottom: 2em;
 }
 
@@ -320,7 +323,7 @@ nav .left {
 
 .info i {
     color: #E6AF2E;
-    margin-right: 0.5em;
+    margin-right: 0.75em;
 }
 
 .info p {
