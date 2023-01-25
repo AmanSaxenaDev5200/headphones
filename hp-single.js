@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('hp-error').classList.remove('full-hidden');
                 document.querySelector('.hp-heading').classList.add('full-hidden');
             } else {
+                document.querySelector('title').textContent = currentHP.brand + " " + currentHP.modelname + " - MyHeadphones";
                 document.querySelector('.hp-heading h1').textContent = currentHP.brand + " " + currentHP.modelname;
 
                 document.querySelector('#spec-brand p').textContent = currentHP.brand;

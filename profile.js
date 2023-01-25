@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         document.querySelector('#profile-heading h1').textContent = profile.username;
+        document.querySelector('title').textContent = profile.username + '\'s Profile - MyHeadphones';
 
         if (user_rights) {
             document.getElementById('add-hp').addEventListener('click', openAddHPModal, false);
