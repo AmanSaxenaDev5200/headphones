@@ -434,6 +434,71 @@ main {
     border-bottom: 1px solid orange;
 }
 
+/* profile */
+#profile-no-hp {
+    color: black;
+    text-align: center;
+    padding: 3em;
+}
+
+#add-hp-modal {
+    height: 80vh;
+    border: 1px solid black;
+    overflow-y: scroll;
+    padding: 0 1em 0 2em;
+    width: 70vw;
+}
+
+#add-hp-modal .close {
+    border-bottom: 1px solid grey;
+    margin-bottom: 1em;
+}
+
+#add-hp-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#add-hp-container ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    align-items: flex-start;
+    padding: 0 2em;
+}
+
+#add-hp-container li {
+    padding: 1em 0 0.5em 0;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+#add-hp-container h2 {
+    font-size: 21px;
+    margin-bottom: 1em;
+}
+
+#modal-brand-section {
+    flex-grow: 1;
+}
+
+#modal-modelname-section {
+    flex-grow: 2;
+    border-left: 1px solid grey;
+}
+
+#modal-modelname-section li {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#modal-brand-section .selected {
+    border-bottom: 1px solid black;
+}
+
 /* footer */
 footer {
     background-color: orange;

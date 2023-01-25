@@ -34,7 +34,7 @@
                 </div>
                 <form id="login-modal" class="modal hidden" aria-modal="true" aria-hidden="true">
                     <div class="close">
-                        <button id="close-modal" type="button">X</button>
+                        <button id="login-close" class="close-modal" type="button">X</button>
                     </div>
                     <div class="login-container">
                         <div class="left">
@@ -58,7 +58,7 @@
                 </div>
             </nav>
 
-            <section class="hp-heading width">
+            <section id="profile-heading" class="hp-heading width">
                 <img class="hp-main" src="" width="200px" height="200px">
                 <h1>Username</h1>
             </section>
@@ -76,73 +76,28 @@
             </section>
 
             <section id="headphones-list">
-                <ul class="width">
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-
-                    <a href="./headphone.html">
-                        <li>
-                            <img src="" width="150px" height="150px">
-                            <p>Headphones and Earphones</p>
-                        </li>
-                    </a>
-                </ul>
+                <div id="hp-btn-container" class="width full-hidden">
+                    <button id="add-hp">Add Headphone</button>>
+                    <button id="rm-hp">Remove Headphone</button>
+                </div>
+                <h1 id="profile-no-hp" class="full-hidden">No Headphones in Collection</h1>
+                <form id="add-hp-modal" class="modal full-hidden" aria-modal="true" aria-hidden="true">
+                    <div class="close">
+                        <button id="add-hp-close" class="close-modal" type="button">X</button>
+                    </div>
+                    <div id="add-hp-container">
+                        <ul id="modal-brand-section">
+                            <li><h2>Brand</h2></li>
+                        </ul>
+                        <ul id="modal-modelname-section">
+                            <li><h2>Model Name</h2></li>
+                        </ul>
+                    </div>
+                </form>
             </section>
         </main>
     </body>
     
     <script type="text/javascript" src="./headphones.js"></script>
+    <script type="text/javascript" src="./profile.js"></script>
 </html>
