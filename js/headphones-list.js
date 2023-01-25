@@ -7,10 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const hp_types = [];
     const hp_drivers = [];
 
-    document.getElementById('hp-brand').addEventListener('change', filterList, false);
-    document.getElementById('hp-type').addEventListener('change', filterList, false);
-    document.getElementById('hp-driver').addEventListener('change', filterList, false);
-    document.getElementById('hp-wireless').addEventListener('change', filterList, false);
+    document.getElementById('hp-brand').addEventListener('change', populateFilteredList, false);
+    document.getElementById('hp-type').addEventListener('change', populateFilteredList, false);
+    document.getElementById('hp-driver').addEventListener('change', populateFilteredList, false);
+    document.getElementById('hp-wireless').addEventListener('change', populateFilteredList, false);
     document.getElementById('all-option').addEventListener('click', resetAll, false);
     
      /* headphone functions */
@@ -96,8 +96,30 @@ document.addEventListener('DOMContentLoaded', function() {
             && (element.driver === sel_driver.value || !sel_driver.value)
             && (element.wireless === sel_wireless.value || !sel_wireless.value);
         });
+        return filteredHP;
+    }
 
-        populateList(filteredHP);
+    function populateFilteredList() {
+        const hp_list = filterList();
+        populateList(hp_list);
+    }
+         
+    function sortList(sortMethod) {
+        switch (sortMethod) {
+            case 'high-low-price':
+
+            case 'low-high-price':
+
+            case 'high-low-rating':
+
+            case 'low-high-rating':
+
+            case 'A-Z':
+
+            case 'Z-A':
+
+            
+        }
     }
 
     function resetList() {
@@ -121,14 +143,20 @@ document.addEventListener('DOMContentLoaded', function() {
         const hp_list = document.getElementById('headphones-list');
         hp_list.innerHTML = '';
         const hp_ul = document.createElement('ul');
-
-        for (const hp of headphones_list) {
-            const hp_a = createHPListItem(hp);
-            hp_ul.appendChild(hp_a);
-        }
-
         hp_ul.classList.add('width');
-        hp_list.appendChild(hp_ul);
+        if (headphones_list.length > 0) { 
+            for (const hp of headphones_list) {
+                const hp_a = createHPListItem(hp);
+                hp_ul.appendChild(hp_a);
+            }
+            hp_list.appendChild(hp_ul);
+        } else {
+            const no_hp = document.createElement('h2');
+            no_hp.id = 'hp-no-exist';
+            no_hp.classList.add('does-not-exist');
+            no_hp.textContent = 'No Headphones Found';
+            hp_list.appendChild(no_hp);
+        }
     }
 
     initHeadphones();

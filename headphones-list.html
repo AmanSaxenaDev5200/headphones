@@ -60,9 +60,9 @@
                 <div class="overlay full-hidden">
                 </div>
             </nav>
+            <p id="database" class="width">All Headphones</p>
         </header>
         <main>
-            <p id="database" class="width">All Headphones</p>
             <div id="filter-options">
                 <ul class="width">
                    <div class="left">
@@ -93,14 +93,12 @@
                    </div>
 
                    <select id="sort">
-                    <option>Popularity (DESC)</option>
-                    <option>Popularity (ASC)</option>
-                    <option>Price (DESC)</option>
-                    <option>Price (ASC)</option>
-                    <option>A-Z (DESC)</option>
-                    <option>A-Z (ASC)</option>
-                    <option>Rating (DESC)</option>
-                    <option>Rating (ASC)</option>
+                    <option value="high-low-price">Price (DESC)</option>
+                    <option value="low-high-price">Price (ASC)</option>
+                    <option value="high-low-rating">Rating (DESC)</option>
+                    <option value="low-high-rating">Rating (ASC)</option>
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
                    </select>
                 </ul>
             </div>
