@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function setHeadphonePage() {
-        const id = this.id.slice(10);
+        const id = Number(this.getAttribute('data-hp-id'));
         localStorage.setItem('currenthp', id);
     }
     
