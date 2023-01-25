@@ -308,9 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const hpIndex = userHP.findIndex(element => element === hpID);
         const allUsers = JSON.parse(localStorage.getItem('users'));
 
-        console.log(hpIndex);
         userHP.splice(hpIndex, 1);
-        console.log(userHP);
         user.headphones = userHP;
 
         const userIndex = allUsers.findIndex(element => element.username === user.username);
