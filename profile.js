@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         reviews_container.innerHTML = '';
         let reviews = localStorage.getItem('reviews');
         if (reviews === null) {
-
+            
         } else {
             reviews = JSON.parse(reviews);
             reviews = reviews.filter(element => element.username === profile.username);

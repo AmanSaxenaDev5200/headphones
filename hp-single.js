@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function populateReviews() {
         const reviews_container = document.getElementById('reviews');
-        reviews_container.innerHTML = '';
+        //reviews_container.innerHTML = '';
         let reviews = localStorage.getItem('reviews');
         const hpID = Number.parseInt(localStorage.getItem('currenthp'));
         if (reviews === null) {

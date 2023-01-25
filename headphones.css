@@ -458,6 +458,12 @@ main {
     margin-top: 1.5em;
 }
 
+#no-reviews {
+    color: black;
+    padding: 3em;
+    text-align: center;
+}
+
 .star-point {
     color: orange;
 }
