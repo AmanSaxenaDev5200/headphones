@@ -243,11 +243,6 @@ nav .left {
 
 
 /* landing page content */
-main {
-    background-color:#161412;
-    color:#EBEBEB;
-}
-
 .hero-container {
     padding: 12em 5em 12em 5em;
 }
@@ -312,15 +307,13 @@ main {
     color: #161412;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1em 2em;
     border-bottom: 2px solid #EBEBEB;
 }
 
 #filter-options .left {
     display: flex;
-}
-
-#filter-options .left {
     justify-content: flex-start;
     flex-wrap: wrap;
 }
@@ -347,7 +340,9 @@ main {
 }
 
 #sort {
-    padding: 0 2em 0 0.5em;
+    background-color: transparent;
+    padding: 0.5em 2em 0.5em 0.5em;
+    max-height: 50px;
 }
 
 #headphones-list {
@@ -664,6 +659,15 @@ main {
     left: 0;
     color: #E6AF2E;
     cursor: pointer;
+}
+
+/* about page */
+#about-container {
+    padding: 5em;
+}
+
+#about-container h2 {
+    margin-bottom: 1em;
 }
 
 /* footer */
