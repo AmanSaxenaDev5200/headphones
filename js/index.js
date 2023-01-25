@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         heroBtn.removeEventListener('click', openModalHero, false);
         heroBtn.textContent = 'Go to your Profile'
-        heroBtn.addEventListener('click', goToProfileHero, false);
+        heroBtn.addEventListener('click', () => {
+            goToProfile(userProfile.username);
+        }, false);
         console.log('Welcome, ' + userProfile.username + '!');
     }
 });
@@ -22,8 +24,4 @@ function openModalHero() {
     const modal = document.getElementById('login-modal');
     const overlay = document.querySelector('.overlay');
     openModal(modal, overlay);
-}
-
-function goToProfileHero(username) {
-    goToProfile(username);
 }
