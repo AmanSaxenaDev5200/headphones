@@ -1,6 +1,7 @@
 import User, { checkAnyUsers } from './user.js';
 import Review from './review.js';
 
+//======== Create Test Users ========
 function initTestUsers() {
     if (localStorage.getItem('test-active') === null) {
         const test_user1 = new User('bob', 'hello');

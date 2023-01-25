@@ -6,25 +6,29 @@ import Review from './review.js';
 import { openModal, closeModal, checkValid } from './login.js';
 
 document.addEventListener('DOMContentLoaded', function () {
+
+    //======== Global Variables ========
     const params = (new URL(document.location)).searchParams;
     const profile = getUser(params.get('viewingProfile'))[0];
-
     const headphones = [];
     const hpbrands = [];
     const userHP = [];
     let hp_can_review = [];
     let user = '';
     let user_rights = false;
+
     if (profile === undefined) {
         document.querySelector('main').classList.add('full-hidden');
         document.getElementById('hp-error').classList.remove('full-hidden');
         document.querySelector('.hp-heading').classList.add('full-hidden');
     } else {
         if (!checkAnyUsers()) {
+            //check if user is logged in
             if (localStorage.getItem('currentuser') !== null) {
                 user = getUser(localStorage.getItem('currentuser'))[0];
                 user_rights = profile.username === user.username;
             } else {
+                //workaround when user is not logged in
                 user = new User(undefined, undefined);
             }
 
@@ -32,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('#profile-heading img').src = profile.img;
             document.querySelector('title').textContent = profile.username + '\'s Profile - MyHeadphones';
 
+            //======== Event Listeners ========
             if (user_rights) {
                 document.getElementById('add-hp').addEventListener('click', openAddHPModal, false);
                 document.getElementById('add-hp-close').addEventListener('click', closeAddHPModal, false);
@@ -71,8 +76,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //load headphone data
     function initHeadphones() {
-        //load all headphones
         const hpResponse = loadHeadphones().then(hp => {
             for (const prop of hp) {
                 const thisHp = new Headphone({
@@ -91,16 +96,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 headphones.push(thisHp);
             }
 
+            //sort headphone data alphabetically by default
             headphones.sort((a, b) => {
                 const a_name = a.brand + " " + a.modelname;
                 const b_name = b.brand + " " + b.modelname;
                 return a_name == b_name ? 0 : (a_name > b_name ? 1 : -1);
             });
 
-            //add-hp modal sections
+            //
             insertBrandNames();
 
-            //load user profile's headphones
+            //======== Load User's Headphone Collection ========
             const profile_collection = profile.headphones;
 
             for (const user_hp of profile_collection) {
@@ -108,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 userHP.push(tempHP.id);
             }
 
-            //create user's headphone list
             const hp_list = document.getElementById('headphones');
             const no_hp = document.getElementById('profile-no-hp');
 
@@ -117,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const hp_ul = document.createElement('ul');
 
                 for (const hpID of userHP) {
-                    /* generate headphone list */
                     const hp = headphones.find(element => element.id === hpID);
                     const hp_a = createProfileHPItem(hp);
                     hp_ul.appendChild(hp_a);
@@ -130,6 +134,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 no_hp.classList.remove('full-hidden');
             }
 
+            //gets headphones that user has already reviewed
             if (localStorage.getItem('reviews') !== null) {
                 const reviews = JSON.parse(localStorage.getItem('reviews'));
                 const user_has_reviews = reviews.find(element => element.username === user.username);
@@ -164,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return hp_div;
     }
 
+    //======== Headphone Collection Functions ========
     function closeAddHPModal() {
         const addHPModal = document.getElementById('add-hp-modal');
         const overlay = document.querySelector('.overlay');
@@ -185,6 +191,110 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    //loads headphone brands to add headphone modal
+    function insertBrandNames() {
+        const brand_section = document.getElementById('modal-brand-section');
+        brand_section.innerHTML = '<li><h2>Brand Name</h2></li>';
+
+        if (hpbrands.length === 0) {
+            for (const hpdata of headphones) {
+                if (hpbrands.indexOf(hpdata.brand) === - 1) {
+                    hpbrands.push(hpdata.brand);
+                }
+            }
+        }
+
+        for (const brand of hpbrands) {
+            const list_ele = document.createElement('li');
+            list_ele.textContent = brand;
+            list_ele.addEventListener('click', function () {
+                const selectedEle = document.querySelector('#modal-brand-section .selected');
+                if (selectedEle !== null) {
+                    selectedEle.classList.remove('selected');
+                }
+                this.classList.add('selected');
+                insertModelNames(brand);
+            });
+            brand_section.appendChild(list_ele);
+        }
+    }
+
+    //loads individual headphone models to add headphone modal
+    function insertModelNames(brand) {
+        const brandHP = headphones.filter(element => element.brand === brand);
+        const modelname_section = document.getElementById('modal-modelname-section');
+        modelname_section.innerHTML = '<li><h2>Model Name</h2></li>';
+
+        for (const hp of brandHP) {
+            const list_ele = document.createElement('li');
+
+            const p_ele = document.createElement('p');
+            p_ele.textContent = hp.brand + " " + hp.modelname;
+
+            const i_ele = document.createElement('i');
+            i_ele.classList.add('fa-solid');
+            i_ele.classList.add('fa-circle-plus');
+
+            list_ele.appendChild(p_ele);
+            list_ele.appendChild(i_ele);
+            list_ele.setAttribute('data-hp-id', hp.id);
+            list_ele.addEventListener('click', addHeadphone, false);
+
+            modelname_section.appendChild(list_ele);
+        }
+    }
+
+    function addHeadphone() {
+        const hpID = Number(this.getAttribute('data-hp-id'));
+        const hp = headphones.find(element => element.id === hpID);
+        const allUsers = JSON.parse(localStorage.getItem('users'));
+
+        const hp_exists = userHP.find(element => element === hpID);
+
+        if (!hp_exists) {
+            userHP.push(hpID);
+        }
+        user.headphones = userHP;
+
+        const userIndex = allUsers.findIndex(element => element.username === user.username);
+
+        allUsers[userIndex] = user;
+        localStorage.setItem('users', JSON.stringify(allUsers));
+        location.reload();
+    }
+
+    function removeHeadphone() {
+        const parent = this.parentNode;
+        const sibling = this.previousSibling;
+        const hpID = Number(sibling.getAttribute('data-hp-id'));
+        console.log(hpID);
+        const hpIndex = userHP.findIndex(element => element === hpID);
+        const allUsers = JSON.parse(localStorage.getItem('users'));
+
+        userHP.splice(hpIndex, 1);
+        user.headphones = userHP;
+
+        const userIndex = allUsers.findIndex(element => element.username === user.username);
+        allUsers[userIndex] = user;
+        localStorage.setItem('users', JSON.stringify(allUsers));
+
+        parent.classList.add('full-hidden');
+    }
+
+    //toggles remove buttons for headphones
+    function toggleRemove() {
+        let icons = [];
+        if (this.classList.contains('rm-on')) {
+            location.reload();
+        } else {
+            this.classList.add('rm-on');
+            this.textContent = 'Save';
+            icons = document.querySelectorAll('#profile-list i');
+            icons.forEach(element => element.classList.remove('full-hidden'));
+        }
+    }
+
+    //======== Reviews Functions ========
     function openReviewModal() {
         if (hp_can_review.length > 0) {
             initReviewModal();
@@ -248,6 +358,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const reviews_container = document.getElementById('reviews');
         const no_reviews = document.getElementById('profile-no-reviews');
 
+        //resets reviews container
         while (reviews_container.firstChild) {
             reviews_container.removeChild(reviews_container.firstChild);
         }
@@ -255,10 +366,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (reviews === null) {
             no_reviews.classList.remove('full-hidden');
         } else {
+            //get reviews
             reviews = JSON.parse(reviews);
             reviews = reviews.filter(element => element.username === profile.username);
             if (reviews.length > 0) {
                 no_reviews.classList.add('full-hidden');
+
+                //sort reviews by most recent
                 reviews = reviews.sort((a, b) => {
                     const date1 = Date.parse(a.date);
                     const date2 = Date.parse(b.date);
@@ -269,9 +383,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     const li = document.createElement('li');
                     li.setAttribute('data-review-id', review.review_id);
 
+                    //add review title
                     const h3 = document.createElement('h3');
                     h3.textContent = review.title;
 
+                    //add link to reviewed headphone
                     const hp = headphones.find(element => element.id === Number.parseInt(review.headphone_id));
                     const review_info_p = document.createElement('p');
                     const review_info = '<span>review for <a href="./headphone.html?hpID=' + review.headphone_id + '"><strong>'
@@ -279,10 +395,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     review_info_p.innerHTML = review_info;
                     review_info_p.classList.add('review-info');
 
+                    //add content
                     const review_content_p = document.createElement('p');
                     review_content_p.classList.add('review-content');
                     review_content_p.textContent = review.content;
 
+                    //add star rating
                     const div = document.createElement('div');
                     for (let i = 1; i < 6; i++) {
                         const star_ele = document.createElement('i');
@@ -301,6 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     li.appendChild(div);
                     li.appendChild(review_content_p);
 
+                    //if logged-in, add edit button for review
                     if (user_rights) {
                         const i_ele = document.createElement('i');
                         i_ele.classList.add('edit-mark');
@@ -337,6 +456,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const rating_err = document.getElementById('rating-err');
         const content_err = document.getElementById('content-err');
 
+        //Check that user input is valid
         const valid1 = checkValid(hpID, hp_err, 'Please select a headphone.');
         const valid2 = checkValid(title, title_err, 'Please enter a title.');
         const valid3 = (() => {
@@ -384,107 +504,5 @@ document.addEventListener('DOMContentLoaded', function () {
         reviews = reviews.filter(element => element.review_id !== review_id);
         localStorage.setItem('reviews', JSON.stringify(reviews));
         location.reload();
-    }
-
-    //load headphone model names to add-hp modal
-    function insertModelNames(brand) {
-        const brandHP = headphones.filter(element => element.brand === brand);
-        const modelname_section = document.getElementById('modal-modelname-section');
-        modelname_section.innerHTML = '<li><h2>Model Name</h2></li>';
-
-        for (const hp of brandHP) {
-            const list_ele = document.createElement('li');
-
-            const p_ele = document.createElement('p');
-            p_ele.textContent = hp.brand + " " + hp.modelname;
-
-            const i_ele = document.createElement('i');
-            i_ele.classList.add('fa-solid');
-            i_ele.classList.add('fa-circle-plus');
-
-            list_ele.appendChild(p_ele);
-            list_ele.appendChild(i_ele);
-            list_ele.setAttribute('data-hp-id', hp.id);
-            list_ele.addEventListener('click', addHeadphone, false);
-
-            modelname_section.appendChild(list_ele);
-        }
-    }
-
-    //load headphone brand names to add-hp modal
-    function insertBrandNames() {
-        const brand_section = document.getElementById('modal-brand-section');
-        brand_section.innerHTML = '<li><h2>Brand Name</h2></li>';
-
-        if (hpbrands.length === 0) {
-            for (const hpdata of headphones) {
-                if (hpbrands.indexOf(hpdata.brand) === - 1) {
-                    hpbrands.push(hpdata.brand);
-                }
-            }
-        }
-
-        for (const brand of hpbrands) {
-            const list_ele = document.createElement('li');
-            list_ele.textContent = brand;
-            list_ele.addEventListener('click', function () {
-                const selectedEle = document.querySelector('#modal-brand-section .selected');
-                if (selectedEle !== null) {
-                    selectedEle.classList.remove('selected');
-                }
-                this.classList.add('selected');
-                insertModelNames(brand);
-            });
-            brand_section.appendChild(list_ele);
-        }
-    }
-
-    function addHeadphone() {
-        const hpID = Number(this.getAttribute('data-hp-id'));
-        const hp = headphones.find(element => element.id === hpID);
-        const allUsers = JSON.parse(localStorage.getItem('users'));
-
-        const hp_exists = userHP.find(element => element === hpID);
-
-        if (!hp_exists) {
-            userHP.push(hpID);
-        }
-        user.headphones = userHP;
-
-        const userIndex = allUsers.findIndex(element => element.username === user.username);
-
-        allUsers[userIndex] = user;
-        localStorage.setItem('users', JSON.stringify(allUsers));
-        location.reload();
-    }
-
-    function removeHeadphone() {
-        const parent = this.parentNode;
-        const sibling = this.previousSibling;
-        const hpID = Number(sibling.getAttribute('data-hp-id'));
-        console.log(hpID);
-        const hpIndex = userHP.findIndex(element => element === hpID);
-        const allUsers = JSON.parse(localStorage.getItem('users'));
-
-        userHP.splice(hpIndex, 1);
-        user.headphones = userHP;
-
-        const userIndex = allUsers.findIndex(element => element.username === user.username);
-        allUsers[userIndex] = user;
-        localStorage.setItem('users', JSON.stringify(allUsers));
-
-        parent.classList.add('full-hidden');
-    }
-
-    function toggleRemove() {
-        let icons = [];
-        if (this.classList.contains('rm-on')) {
-            location.reload();
-        } else {
-            this.classList.add('rm-on');
-            this.textContent = 'Save';
-            icons = document.querySelectorAll('#profile-list i');
-            icons.forEach(element => element.classList.remove('full-hidden'));
-        }
     }
 });

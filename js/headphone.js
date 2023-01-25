@@ -28,12 +28,15 @@ export default class Headphone {
     }
 }
 
+//======== Shared Functions for Processing Headphone Data ========
+
 export async function loadHeadphones() {
     const response = await fetch('./test.json');
     const names = await response.json();
     return names;
 }
 
+//Create headphone thumbnail and info
 export function createHPListItem(hp) {
     let reviews = [];
     if (localStorage.getItem('reviews') !== null) {
@@ -70,6 +73,7 @@ export function createHPListItem(hp) {
     return hp_a;
 }
 
+//URL routing for headphone single page
 function headphonePage(headphone_id) {
     let hpURL = './headphone.html';
     const hpObj = { hpID: headphone_id };

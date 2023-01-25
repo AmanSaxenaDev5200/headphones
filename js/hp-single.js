@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const params = (new URL(document.location)).searchParams;
     const hpID = Number.parseInt(params.get('hpID'));
 
+    //load headphones data
     function initHeadphones() {
         const hpResponse = loadHeadphones().then(hp => {
             for (const prop of hp) {
@@ -25,12 +26,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 headphones.push(thisHp);
             }
+            //get the headphone based off the URL routing
             const currentHP = headphones.find(element => element.id === hpID);
             if (currentHP === undefined) {
                 document.querySelector('main').classList.add('full-hidden');
                 document.getElementById('hp-error').classList.remove('full-hidden');
                 document.querySelector('.hp-heading').classList.add('full-hidden');
             } else {
+                //inject headphone data
                 document.querySelector('title').textContent = currentHP.brand + " " + currentHP.modelname + " - MyHeadphones";
                 document.querySelector('.hp-heading .hp-main').src = currentHP.img;
                 document.querySelector('.hp-heading h1').textContent = currentHP.brand + " " + currentHP.modelname;
@@ -67,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    //get reviews for headphone
     function populateReviews(hpID) {
         const reviews_container = document.getElementById('reviews');
         let reviews = localStorage.getItem('reviews');

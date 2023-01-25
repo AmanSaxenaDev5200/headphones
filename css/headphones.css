@@ -46,7 +46,6 @@ a {
 }
 
 /* navigation */
-
 #landing-header {
     background-image: url('../img/header-image.jpg');
     background-repeat: no-repeat;
@@ -459,7 +458,7 @@ nav .left {
     padding: 5em;
 }
 
-/* headphone page */
+/* headphone single page */
 .hp-heading {
     text-align: center;
     padding: 4em 1em 5em 1em;
@@ -580,7 +579,7 @@ nav .left {
     padding-right: 0.25em;
 }
 
-/* profile */
+/* profile page */
 .does-not-exist {
     color: #161412;
     text-align: center;

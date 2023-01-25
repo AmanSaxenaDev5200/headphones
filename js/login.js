@@ -2,7 +2,9 @@
 
 import User, { checkAnyUsers, getUser } from './user.js';
 
+//setup login modal
 document.addEventListener('DOMContentLoaded', () => {
+    //======== Global Variables ========
     const modal = document.getElementById('login-modal');
     const overlay = document.querySelector('.overlay');
 
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createUser = document.querySelector('.create-user');
     const closeBtn = document.querySelector('.close-modal');
 
+    //======== Event Listeners ========
     createBtn.addEventListener('click', () => {
         setupUser(createBtn, createUser);
     }, false);
@@ -34,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/* grab input for user functions */
+//======== Shared Functions for Account Data ========
+
+//grab user input for account and perform validation
 function setupUser(btn, inputFields) {
     if (inputFields.classList.contains('hidden')) {
         inputFields.classList.remove('hidden');
@@ -70,7 +75,6 @@ function logUserIn() {
     }
 }
 
-/* user functions */
 function handleCreate(username, password) {
     const user = new User(username, password);
     const usr_error = document.getElementById('usr-error');
@@ -139,6 +143,27 @@ function initLogin(userBtn, signupBtn) {
     }, false);
 }
 
+export function isLoggedIn() {
+    return JSON.parse(localStorage.getItem('loggedin'));
+}
+
+function logOut() {
+    localStorage.removeItem('currentuser');
+    localStorage.removeItem('loggedin');
+    location.reload();
+}
+
+//helper function for user input validation
+export function checkValid(valid_ele, err_ele, err_mssg) {
+    if (!valid_ele.validity.valid) {
+        err_ele.textContent = err_mssg;
+    } else {
+        err_ele.textContent = '';
+    }
+    return valid_ele.validity.valid;
+}
+
+//URL routing for profiles
 export function goToProfile(username) {
     let profileURL = './profile.html';
     const profileObj = { viewingProfile: username };
@@ -147,6 +172,8 @@ export function goToProfile(username) {
     profileURL += '?' + params.toString();
     location.href = profileURL;
 }
+
+//======== Shared Functions for Modals ========
 
 export function openModal(modal, overlay) {
     modal.classList.remove('full-hidden');
@@ -160,30 +187,12 @@ export function closeModal(modal, overlay) {
     modal.ariaHidden = true;
 }
 
+//for logged-in user menu
 function toggleSubMenu() {
     const submenu = document.getElementById('sub-menu');
     if (submenu.classList.contains('hidden')) {
         submenu.classList.remove('hidden');
     } else {
-        submenu.classList.add('hidden');ß
+        submenu.classList.add('hidden'); ß
     }
-}
-
-export function isLoggedIn() {
-    return JSON.parse(localStorage.getItem('loggedin'));
-}
-
-function logOut() {
-    localStorage.removeItem('currentuser');
-    localStorage.removeItem('loggedin');
-    location.reload();
-}
-
-export function checkValid(valid_ele, err_ele, err_mssg) {
-    if (!valid_ele.validity.valid) {
-        err_ele.textContent = err_mssg;
-    } else {
-        err_ele.textContent = '';
-    }
-    return valid_ele.validity.valid;
 }

@@ -2,11 +2,13 @@
 import Headphone, { loadHeadphones, createHPListItem } from './headphone.js';
 
 document.addEventListener('DOMContentLoaded', function () {
+    //======== Global variables ========
     const headphones = [];
     const hp_brands = [];
     const hp_types = [];
     const hp_drivers = [];
 
+    //======== Event Listeners ========
     document.getElementById('hp-brand').addEventListener('change', populateFilteredList, false);
     document.getElementById('hp-type').addEventListener('change', populateFilteredList, false);
     document.getElementById('hp-driver').addEventListener('change', populateFilteredList, false);
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('sort').addEventListener('change', initSortList, false);
     document.getElementById('all-option').addEventListener('click', resetAll, false);
 
-    /* headphone functions */
+    //load headphone data
     function initHeadphones() {
         const hpResponse = loadHeadphones().then(hp => {
             for (const prop of hp) {
@@ -34,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 headphones.push(thisHp);
             }
 
+            //sort headphone data alphabetically by default
             headphones.sort((a, b) => {
                 const a_name = a.brand + " " + a.modelname;
                 const b_name = b.brand + " " + b.modelname;
@@ -47,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const sel_driver = document.getElementById('hp-driver');
 
             for (const hp of headphones) {
-                /* generate filter options */
+                //generate filter options
                 if (hp_brands.indexOf(hp.brand) < 0) {
                     hp_brands.push(hp.brand);
                     const hp_opt_brand = document.createElement('option');
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     sel_driver.appendChild(hp_opt_driver);
                 }
 
-                /* generate headphone list */
+                //generate headphone list
                 const hp_a = createHPListItem(hp);
                 hp_ul.appendChild(hp_a);
             }
@@ -82,6 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    //======== Functions for Filtering/Sorting Headphones ========
+    
     function filterList() {
         const sel_brand = document.getElementById('hp-brand');
         const sel_type = document.getElementById('hp-type');
@@ -101,6 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return filteredHP;
     }
 
+    //makes sure to apply sorting on filtered list as well
     function populateFilteredList() {
         const sortMethod = document.getElementById('sort').value;
         sortList(sortMethod);
@@ -192,10 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
         populateList(filteredHP);
     }
 
-    function resetList() {
-        populateList(headphones);
-    }
-
+    //reset all filters
     function resetAll() {
         const sel_brand = document.getElementById('hp-brand');
         const sel_type = document.getElementById('hp-type');

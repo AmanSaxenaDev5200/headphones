@@ -24,6 +24,7 @@ export function getUser(username) {
     }
 }
 
+//checks if any users have been created
 export function checkAnyUsers() {
     return localStorage.getItem('users') === null;
 }

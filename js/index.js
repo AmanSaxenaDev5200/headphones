@@ -3,6 +3,7 @@
 import { openModal, goToProfile, isLoggedIn } from './login.js';
 import User, { getUser } from './user.js';
 
+//setup landing page signup button
 document.addEventListener('DOMContentLoaded', function () {
     const heroBtn = document.getElementById('hero-signup');
     heroBtn.addEventListener('click', openModalHero, false);
