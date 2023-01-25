@@ -39,7 +39,7 @@ export function createHPListItem(hp) {
     if (localStorage.getItem('reviews') !== null) {
         reviews = JSON.parse(localStorage.getItem('reviews'));
     }
-    reviews = reviews.filter(element => element.headphone_id === hp.id);
+    reviews = reviews.filter(element => Number.parseInt(element.headphone_id) === hp.id);
     const hp_a = document.createElement('a');
     const hp_li = document.createElement('li');
     const hp_h3 = document.createElement('h3');

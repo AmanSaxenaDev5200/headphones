@@ -468,6 +468,7 @@ nav .left {
     margin-bottom: 3em;
     max-width: 300px;
     max-height: 300px;
+    border: 5px solid #E6AF2E;
 }
 
 .hp-heading h1 {
@@ -660,8 +661,7 @@ nav .left {
 .hp-btn-container {
     text-align: right;
     padding-top: 1em;
-    margin-left: 3em;
-    margin-right: 1em;
+    margin-right: 2em;
 }
 
 .hp-btn-container button {
@@ -765,6 +765,10 @@ nav .left {
 
 #about-container h2 {
     margin-bottom: 1em;
+}
+
+#profile-heading img {
+
 }
 
 /* footer */
