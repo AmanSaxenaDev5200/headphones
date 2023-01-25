@@ -341,10 +341,10 @@ main {
 
 #headphones-list ul {
     color: black;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 5em;
+    display: grid;
+    grid-gap: 5em;
+    grid-template-columns: repeat(auto-fill, 150px);
+    justify-content: space-between;
     text-align: center;
     padding: 5em;
 }
@@ -400,27 +400,59 @@ main {
     background-color: white;
 }
 
-.specs-container {
+#specs-container {
     background-color: white;
 }
 
-.specs-container ul {
+#specs-container ul {
     color: black;
     margin: 0 auto;
     padding: 2em 0 2em 4em;
 }
 
-.specs-container ul li {
+#specs-container ul li {
     font-size: 18px;
     margin-bottom: 2em;
 }
 
-.specs-container ul label {
+#specs-container ul label {
     font-weight: bold;
 }
 
-.specs-container ul p {
+#specs-container ul p {
     margin-top: 0.5em;
+}
+
+#reviews-container {
+    background-color: white;
+}
+
+#reviews-container ul {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    padding: 2em 0 4em 4em;
+}
+
+#reviews-container li {
+    width: 80%;
+    padding: 1em 2em 2em 2em;
+}
+
+#reviews-container ul span {
+    font-style: italic;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#reviews-container ul div {
+    margin-top: 0.5em;
+    color: orange;
+}
+
+#reviews-container ul p {
+    margin-top: 1.5em;
 }
 
 #hp-error {
@@ -451,7 +483,7 @@ main {
     color: orange;
     position: absolute;
     top: 0;
-    right: 0;
+    right: -20%;
     cursor: pointer;
 }
 
@@ -511,6 +543,18 @@ main {
 
 #modal-brand-section .selected {
     border-bottom: 1px solid black;
+}
+
+#hp-btn-container {
+    text-align: right;
+    padding: 1em 2em 0 0;
+}
+
+#hp-btn-container button {
+    background-color: orange;
+    color: white;
+    padding: 0.5em 1em 0.5em 1em;
+    border: 0;
 }
 
 /* footer */
