@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Lato, Arial, sans-serif;
 }
 
 ul {
@@ -23,15 +23,15 @@ a {
 /* navigation */
 
 header {
-    background-color: black;
-    color: white;
+    background-color: #161412;
+    color: #EBEBEB;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1em;
+    padding: 1.5em 1em;
     position: relative;
 }
 
@@ -40,10 +40,14 @@ nav .left {
 }
 
 #logo {
-    color: white;
+    color: #EBEBEB;
     font-size: 24px;
     font-weight: bold;
     margin-right: 2em;
+}
+
+#logo span {
+    color: #E6AF2E;
 }
 
 .nav-links {
@@ -54,24 +58,25 @@ nav .left {
 }
 
 .nav-links a {
-    color: white;
+    color: #EBEBEB;
 }
 
 .nav-links a:hover {
-    color: orange;
+    color: #E6AF2E;
 }
 
 #signup {
     background-color: transparent;
-    color: white;
+    color: #EBEBEB;
     font-weight: bold;
-    border: 2px solid orange;
-    padding: 1em;
+    border: 1px solid #EBEBEB;
+    border-radius: 5px;
+    padding: 1em 1.5em;
 }
 
 #signup:hover {
-    background-color: orange;
-    color: white;
+    background-color:#B48E31;
+    border: 1px solid #B48E31;
     cursor: pointer;
 }
 
@@ -232,8 +237,8 @@ nav .left {
 
 /* landing page content */
 main {
-    background-color: black;
-    color: white;
+    background-color:#161412;
+    color:#EBEBEB;
 }
 
 .hero-container {
@@ -248,24 +253,26 @@ main {
 }
 
 .hero-text h1 {
-    margin-bottom: 1em;
+    color:#FBF5F3;
+    margin-bottom: 0.5em;
 }
 
 .hero-text p {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 #hero-signup{
-    background-color: orange;
-    color: white;
+    background-color:#B48E31;
+    color:#EBEBEB;
     max-width: 150px;
     border: 0;
+    border-radius: 5px;
     padding: 1em;
     cursor: pointer;
 }
 
 .info-container {
-    background-color: white;
+    background-color: #fffcf2;
 }
 
 .info {
@@ -645,8 +652,8 @@ main {
 
 /* footer */
 footer {
-    background-color: orange;
-    color: white;
+    background-color: #1B2937;
+    color: #EBEBEB;
     text-align: center;
     padding: 2em;
 }
