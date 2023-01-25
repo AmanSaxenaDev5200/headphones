@@ -277,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         allUsers[userIndex] = user;
         localStorage.setItem('users', JSON.stringify(allUsers));
-        closeAddHPModal();
+        location.reload();
     }
 
     function getUser(username) {
