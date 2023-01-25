@@ -1,4 +1,4 @@
-import User, {checkAnyUsers} from './user.js';
+import User, { checkAnyUsers } from './user.js';
 import Review from './review.js';
 
 function initTestUsers() {

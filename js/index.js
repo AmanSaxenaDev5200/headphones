@@ -1,9 +1,9 @@
 'use strict';
 
-import {openModal, goToProfile, isLoggedIn} from './login.js';
-import User, {getUser} from './user.js';
+import { openModal, goToProfile, isLoggedIn } from './login.js';
+import User, { getUser } from './user.js';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const heroBtn = document.getElementById('hero-signup');
     heroBtn.addEventListener('click', openModalHero, false);
 

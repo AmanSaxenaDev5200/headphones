@@ -17,7 +17,7 @@ export default class User {
 export function getUser(username) {
     if (!checkAnyUsers()) {
         const tempUsers = JSON.parse(localStorage.getItem('users'));
-        const existingUser = tempUsers.filter( element => element.username === username );
+        const existingUser = tempUsers.filter(element => element.username === username);
         return existingUser;
     } else {
         return null;
@@ -31,7 +31,7 @@ export function checkAnyUsers() {
 function randomProfileImg() {
     const randomNum = Math.floor(Math.random() * 4) + 1;
     let url = './img/profile/';
-    switch(randomNum) {
+    switch (randomNum) {
         case 1:
             url += 'profile-1.jpg';
             break;

@@ -1,6 +1,6 @@
 'use-strict'
 
-import User, {checkAnyUsers, getUser} from './user.js';
+import User, { checkAnyUsers, getUser } from './user.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('login-modal');
@@ -48,7 +48,7 @@ function setupUser(btn, inputFields) {
 
         const usr_valid = checkValid(usr, usr_error, 'Please enter a username.');
         const pw_valid = checkValid(pw, pw_error, 'Please enter a password.');
-    
+
         if (usr_valid && pw_valid) {
             handleCreate(usr.value, pw.value);
         }
@@ -101,7 +101,7 @@ function handleLogin(username, password) {
         const user = getUser(username);
         const usr_error = document.getElementById('log-usr-error');
         const pw_error = document.getElementById('log-pw-error');
-        if(user === null) {
+        if (user === null) {
             console.log('There are no registered users yet.');
             usr_error.textContent = 'User doesn\'t exist.';
         } else {
@@ -134,14 +134,14 @@ function initLogin(userBtn, signupBtn) {
     signout.addEventListener('click', logOut, false);
 
     const goProfile = document.querySelector('#sub-menu button');
-    goProfile.addEventListener('click', function() {
+    goProfile.addEventListener('click', function () {
         goToProfile(userProfile.username);
     }, false);
 }
 
 export function goToProfile(username) {
     let profileURL = './profile.html';
-    const profileObj = {viewingProfile: username};
+    const profileObj = { viewingProfile: username };
     const params = new URLSearchParams(profileObj);
 
     profileURL += '?' + params.toString();
@@ -165,7 +165,7 @@ function toggleSubMenu() {
     if (submenu.classList.contains('hidden')) {
         submenu.classList.remove('hidden');
     } else {
-        submenu.classList.add('hidden');
+        submenu.classList.add('hidden');ß
     }
 }
 

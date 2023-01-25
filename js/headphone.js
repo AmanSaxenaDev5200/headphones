@@ -72,7 +72,7 @@ export function createHPListItem(hp) {
 
 function headphonePage(headphone_id) {
     let hpURL = './headphone.html';
-    const hpObj = {hpID: headphone_id};
+    const hpObj = { hpID: headphone_id };
     const params = new URLSearchParams(hpObj);
 
     hpURL += '?' + params.toString();
