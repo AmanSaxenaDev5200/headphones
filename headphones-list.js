@@ -1,5 +1,5 @@
 'use-strict'
-import Headphone, {loadHeadphones} from './headphone.js';
+import Headphone, {loadHeadphones, createHPListItem} from './headphone.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const headphones = [];
@@ -79,27 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
             hp_list.appendChild(hp_ul);
         });
      }  
-
-    function createHPListItem(hp) {
-        const hp_a = document.createElement('a');
-        const hp_li = document.createElement('li');
-        const hp_h3 = document.createElement('h3');
-        const hp_span = document.createElement('span');
-        const hp_img = document.createElement('img');
-        hp_h3.textContent = hp.brand + " " + hp.modelname;
-        let wireless = (hp.wireless === 'true') ? 'Wireless' : 'Wired';
-        hp_span.textContent = hp.type + " " + wireless;
-        hp_img.width = 150;
-        hp_img.height = 150;
-        hp_img.src = '';
-        hp_li.appendChild(hp_img);
-        hp_li.appendChild(hp_h3);
-        hp_li.appendChild(hp_span);
-        hp_a.href = headphonePage(hp.id);
-        hp_a.setAttribute('data-hp-id', hp.id);
-        hp_a.appendChild(hp_li);
-        return hp_a;
-    }
 
     function filterList() {
         resetList();

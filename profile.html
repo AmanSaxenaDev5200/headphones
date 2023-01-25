@@ -7,6 +7,9 @@
         <title>MyHeadphones</title>
         <link rel="stylesheet" href="./headphones.css">
         <script src="https://kit.fontawesome.com/70f047892b.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
     </head>
     <body>
         <header>
@@ -32,7 +35,7 @@
                     <button>Go to Profile</button>
                     <p id="sign-out"><i class="fa-solid fa-arrow-right-from-bracket"></i>Sign Out</p>
                 </div>
-                <form id="login-modal" class="modal hidden" aria-modal="true" aria-hidden="true">
+                <form id="login-modal" class="modal full-hidden" aria-modal="true" aria-hidden="true">
                     <div class="close">
                         <button id="login-close" class="close-modal" type="button">X</button>
                     </div>
@@ -92,6 +95,8 @@
                         </ul>
                     </div>
                 </form>
+                <div id="headphones" class="width">
+                </div>
             </section>
 
             <section id="reviews-container" class="full-hidden">
@@ -147,6 +152,6 @@
         </footer>
     </body>
     
-    <script type="text/javascript" src="./headphones.js"></script>
-    <script type="text/javascript" src="./profile.js"></script>
+    <script type="module" src="./login.js"></script>
+    <script type="module" src="./profile.js"></script>
 </html>

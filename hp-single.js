@@ -18,20 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     'impedance': prop['impedance'],
                     'sensitivity': prop['sensitivity'],
                     'weight': prop['weight'],
-                    'driver-type': prop['driver-type'],
+                    'driver': prop['driver-type'],
                     'price': prop['price'],
                     'wireless': prop['wireless']
                 });
                 headphones.push(thisHp);
             }
 
+            console.log(hpID);
             const currentHP = headphones.find(element => element.id === hpID);
-
             document.querySelector('.hp-heading h1').textContent = currentHP.brand + " " + currentHP.modelname;
 
             document.querySelector('#spec-brand p').textContent = currentHP.brand;
             document.querySelector('#spec-modelname p').textContent = currentHP.modelname;
-            document.querySelector('#spec-price p').textContent = "$"+ currentHP.price + ".00";
+            document.querySelector('#spec-price p').textContent = "$"+ Number(currentHP.price).toFixed(2);
             let wireless = (currentHP.wireless === 'true') ? 'Wireless' : 'Wired';
             document.querySelector('#spec-type p').textContent = currentHP.type + ' ' + wireless;
             document.querySelector('#spec-driver p').textContent = currentHP.driver;
@@ -71,18 +71,20 @@ document.addEventListener('DOMContentLoaded', function() {
             if (reviews.length > 0) {
                 document.getElementById('no-reviews').classList.add('full-hidden');
                 reviews = reviews.sort( (a,b) => {
-                    return a.date == b.date ? 0 : (a.date > b.date ? 1 : -1);
+                    const date1 = Date.parse(a.date);
+                    const date2 = Date.parse(b.date);
+                    return date1 == date2 ? 0 : (date1 < date2 ? 1 : -1);
                 });
                 const ul = document.createElement('ul');
                 for (const review of reviews) {
                     const li = document.createElement('li');
-                    li.setAttribute('data-review-id', review.id);
+                    li.setAttribute('data-review-id', review.review_id);
     
                     const h3 = document.createElement('h3');
                     h3.textContent = review.title;
     
                     const review_info_p = document.createElement('p');
-                    const review_info = '<span>reviewed by <a href="./profile.html">' 
+                    const review_info = '<span>reviewed by <a href="./profile.html?viewingProfile=' + review.username + '">' 
                     + review.username + '</a></span><span>' + review.date + '</span>';
                     review_info_p.innerHTML = review_info;
                     review_info_p.classList.add('review-info');
